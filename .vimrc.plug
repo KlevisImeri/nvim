@@ -1,0 +1,12 @@
+call plug#begin('~/.vim/plugged')
+
+" Comment and uncomment lines
+" Plug 'itchyny/nerdcommenter'
+
+" Color theme
+Plug 'bluz71/vim-nightfly-guicolors'
+Plug 'vim-airline/vim-airline'
+Plug 'https://tpope.io/vim/commentary.git'
+Plug 'NLKNguyen/papercolor-theme'
+
+call plug#end()
