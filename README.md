@@ -1,2 +1,2 @@
 # .vimrc
-The .vimrc setting file
+The .vimrc settings file
