@@ -31,12 +31,23 @@ set mouse=a
 inoremap jj <esc>
 vmap // :s/^/\/\//<CR>
 vmap //r :s/^\/\///<CR>
-
+nnoremap <F5> :!r.bat <CR>
+noremap <C-c> "+y
 
 " Call the .vimrc.plug file
-if filereadable(expand("~/.vimrc.plug"))
-	source ~/.vimrc.plug
-endif
+call plug#begin('~/.vim/plugged')
+
+" Comment and uncomment lines
+" Plug 'itchyny/nerdcommenter'
+
+" Color theme
+Plug 'bluz71/vim-nightfly-guicolors'
+Plug 'vim-airline/vim-airline'
+Plug 'https://tpope.io/vim/commentary.git'
+Plug 'NLKNguyen/papercolor-theme'
+
+call plug#end()
+
 
 " Choose theme
 
