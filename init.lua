@@ -37,5 +37,7 @@ vim.api.nvim_set_keymap('i', '<C-v>', '<Esc>"+p', { noremap = true })
 vim.api.nvim_set_keymap('n', '<C-v>', '"+p', { noremap = true })
 -- Fzf shourcut
 vim.keymap.set("n", "<C-o>", "<cmd>lua require('fzf-lua').files()<CR>", { silent = true })
+-- Netwr shourcut
+vim.api.nvim_set_keymap('n', '<C-b>', ':silent !start explorer ' .. vim.fn.expand('%:p:h') .. '<CR><CR>', { silent = true })
 -----------------------Shourcuts-------------------------
 
