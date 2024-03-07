@@ -18,6 +18,8 @@ vim.opt.tabstop = 4
 vim.opt.relativenumber = true
 -- Mouse input
 vim.opt.mouse = "a"
+-- Set Font
+vim.o.guifont = "Hack Nerd Font:h14"
 --------------------General Settings---------------------
 
 -----------------------Shourcuts-------------------------

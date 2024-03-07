@@ -2,6 +2,7 @@
   "fzf": { "branch": "master", "commit": "0cc27c3cc17abf76e16e82dafdadd63101a84c05" },
   "fzf-lua": { "branch": "main", "commit": "fea7e7b98af19fe4bc988828073da21b9ad1c3a6" },
   "lazy.nvim": { "branch": "main", "commit": "aedcd79811d491b60d0a6577a9c1701063c2a609" },
+  "lualine.nvim": { "branch": "master", "commit": "8b56462bfb746760465264de41b4907310f113ec" },
   "nightfly": { "branch": "master", "commit": "109fa80b06f18b6e335014a97cdef534f20ee87c" },
   "nvim-web-devicons": { "branch": "master", "commit": "4adea17610d140a99c313e3f79a9dc01825d59ae" }
 }
