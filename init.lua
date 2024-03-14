@@ -25,11 +25,6 @@ vim.opt.mouse = "a"
 -- Set Font
 vim.o.guifont = "Hack Nerd Font:h14"
 
--- Set Transparent
-vim.api.nvim_command("highlight Normal guibg=NONE")
-vim.api.nvim_command("highlight LineNr guibg=NONE")
-vim.api.nvim_command("highlight CursorLineNr guibg=NONE")
-vim.api.nvim_command("highlight SignColumn guibg=NONE")
 ---------------KickStart.nvim
 -- Set Leader Key
 vim.g.mapleader = " "
@@ -132,3 +127,12 @@ vim.api.nvim_create_autocmd("TextYankPost", {
 
 ------------------- Lua Configurations-------------------
 require("lazy.lazy")
+
+------------------- Lua Configurations-------------------
+
+-------------General Settings After Plugins--------------
+vim.api.nvim_command("highlight Normal guibg=NONE")
+vim.api.nvim_command("highlight LineNr guibg=NONE")
+vim.api.nvim_command("highlight CursorLineNr guibg=NONE")
+vim.api.nvim_command("highlight SignColumn guibg=NONE")
+-------------General Settings After Plugins--------------
