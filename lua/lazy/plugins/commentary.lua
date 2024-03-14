@@ -1,21 +1,27 @@
 return {
-    'numToStr/Comment.nvim',
-    lazy = false,
+	"numToStr/Comment.nvim",
+	lazy = false,
 	config = function()
-        require('Comment').setup({
+		require("Comment").setup({
+			padding = true,
+			sticky = true,
 			toggler = {
-				---Line-comment toggle keymap
-				line = '<C-_>',
-				---Block-comment toggle keymap
-				block = 'gbc',
+				line = "<C-_>",
+				block = "gbc",
 			},
 			opleader = {
-	    	    ---Line-comment keymap
-    	    	line = '<C-_>',
-	    	    ---Block-comment keymap
-    	    	block = 'gb',
-		    },
+				line = "<C-_>",
+				block = "gb",
+			},
+			extra = {
+				above = "gcO",
+				below = "gco",
+				eol = "gcA",
+			},
+			mappings = {
+				basic = true,
+				extra = true,
+			},
 		})
-	end
+	end,
 }
-
