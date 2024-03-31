@@ -1,4 +1,4 @@
-# .vimrc
+# Nvim lua configuration
 The .vimrc settings file
 
 ### Plugins I generally use
