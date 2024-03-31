@@ -1,4 +1,4 @@
-# .vimrc
+# Vim vimplug configuration
 The .vimrc settings file
 
 ### Plugins I generally use
