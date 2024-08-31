@@ -135,8 +135,9 @@ return { -- LSP Configuration & Plugins
 		--  - settings (table): Override the default settings passed when initializing the server.
 		--        For example, to see the options for `lua_ls`, you could go to: https://luals.github.io/wiki/settings/
 		local servers = {
+			-- ccls = {},
 			clangd = {},
-			-- gopls = {},
+			-- gopls = {}
 			-- pyright = {},
 			-- rust_analyzer = {},
 			-- ... etc. See `:help lspconfig-all` for a list of all the pre-configured LSPs
@@ -145,8 +146,77 @@ return { -- LSP Configuration & Plugins
 			--    https://github.com/pmizio/typescript-tools.nvim
 			--
 			-- But for many setups, the LSP (`tsserver`) will work just fine
-			-- tsserver = {},
+			tsserver = {
+				cmd = { "typescript-language-server", "--stdio" },
+				filetype = {
+					"javascript",
+					"javascriptreact",
+					"javascript.jsx",
+					"typescript",
+					"typescriptreact",
+					"typescript.tsx",
+				},
+				init_options = {
+					plugins = {
+						{
+							name = "@vue/typescript-plugin",
+							location = "C:/Users/Admin/AppData/Roaming/npm/@vue/typescript-plugin",
+							languages = { "javascript", "typescript", "vue" },
+						},
+					},
+				},
+				filetypes = {
+					"javascript",
+					"typescript",
+					"vue",
+				},
+				single_file_support = true,
+			},
+			volar = {
+				filetypes = { "vue", "javascript", "typescript", "javascriptreact", "typescriptreact" },
+				init_options = {
+					vue = {
+						hybridMode = false,
+					},
+					typescript = {
+						-- Global install of typescript
+						--tsdk = '~/.nvm/versions/node/v20.11.1/lib/node_modules/typescript',
+						--tsdk = 'C:\Users\Admin\AppData\Roaming\npm\typescript'
+						-- Current project version and what I will likely use
+						tsdk = vim.fn.getcwd() .. "/node_modules/typescript/lib",
+					},
+				},
+			},
+			-- clangd = {
+			-- 	filetypes = { "c", "cpp" },
+			-- 	cmd = {
+			-- 		"clangd",
+			-- 		"--header-insertion=never",
+			-- 	},
+			-- 	capabilities = capabilities,
+			-- 	on_attach = function(client, bufnr)
+			-- 		on_attach(client, bufnr) -- your on_attach function
 			--
+			-- 		local clangd = mason_registry.get_package("clangd")
+			-- 		local install_path = clangd:get_install_path()
+			-- 		local include_path = vim.fn.globpath(install_path, "**/include")
+			--
+			-- 		-- Windows-specific path adjustments
+			-- 		if vim.fn.isdirectory(include_path .. "\\bits") == 0 then -- when not found
+			-- 			local source_path = "~\\AppData\\Local\\nvim\\assets\\clangd\\bits" -- Adjust this path to your assets location
+			-- 			local dest_path = include_path
+			--
+			-- 			-- Use cmd.exe commands to copy directory
+			-- 			local command = string.format("cmd /c xcopy /e /i %s %s", source_path, dest_path)
+			-- 			vim.fn.system(command)
+			--
+			-- 			vim.defer_fn(function()
+			-- 				pcall(vim.diagnostic.reset)
+			-- 				vim.notify("Successfully created bit/stdc++.h header")
+			-- 			end, 500)
+			-- 		end
+			-- 	end,
+			-- },
 
 			lua_ls = {
 				-- cmd = {...},

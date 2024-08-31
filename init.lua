@@ -31,9 +31,6 @@ vim.o.guifont = "Hack Nerd Font:h14"
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "
 
--- Don't show the mode, since it's already in status line
-vim.opt.showmode = false
-
 -- Set WarpAround where the line starts
 vim.opt.breakindent = true
 
