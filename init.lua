@@ -105,13 +105,13 @@ vim.api.nvim_set_keymap("n", "<C-s>", ":wa<CR>", { noremap = true, silent = true
 vim.api.nvim_set_keymap("i", "<C-s>", "<Esc>:wa<CR>", { noremap = true, silent = true })
 vim.api.nvim_set_keymap("v", "<C-s>", "<Esc>:wa<CR>", { noremap = true, silent = true })
 -- Delete Bacspace
-vim.api.nvim_set_keymap("i", "<C-h>", ":db<CR>", { noremap = true })
-vim.api.nvim_set_keymap("i", "<C-h>", "<C-w>", { noremap = true })
-vim.api.nvim_set_keymap("i", "<C-h>", "<C-w>", { noremap = true })
-vim.api.nvim_set_keymap("i", "<C-H>", "<C-w>", { noremap = true })
-vim.api.nvim_set_keymap("i", "<C-BS>", "<C-w>", { noremap = true, silent = true })
-vim.api.nvim_set_keymap("i", "<M-BS>", "<C-w>", { noremap = true, silent = true })
-vim.api.nvim_set_keymap("i", "<C-Backspace>", "<C-w>", { noremap = true, silent = true })
+-- vim.api.nvim_set_keymap("i", "<C-H>", ":db<CR>", { noremap = true })
+-- vim.api.nvim_set_keymap("i", "<C-H>", "<C-W>", { noremap = true })
+vim.api.nvim_set_keymap("i", "<C-BS>", "<C-W>", { noremap = true, silent = true })
+-- vim.api.nvim_set_keymap("i", "<M-BS>", "<C-W>", { noremap = true, silent = true })
+-- vim.api.nvim_set_keymap("i", "<C-Backspace>", "<C-W>", { noremap = true, silent = true })
+-- vim.keymap.set("n", "<C-BS>", "dw", { silent = true })
+-- vim.keymap.set("n", "<C-Del>", "db", { silent = true })
 -- Ctrl A
 vim.api.nvim_set_keymap("n", "<C-A>", "ggVG", { noremap = true, silent = true })
 -- Ctrl Z
