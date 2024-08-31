@@ -1,4 +1,5 @@
 --------------------General Settings---------------------
+vim.g.python3_host_prog = "D:\\Program Files\\Pyenv\\pyenv-win\\versions\\3.12.1\\python.exe"
 -----------------Klevis
 -- Encoding
 vim.opt.encoding = "utf-8"
@@ -102,9 +103,27 @@ vim.api.nvim_set_keymap("n", "<C-b>", ":NvimTreeToggle<CR>", { noremap = true, s
 -- Ctrl S
 vim.api.nvim_set_keymap("n", "<C-s>", ":wa<CR>", { noremap = true, silent = true })
 vim.api.nvim_set_keymap("i", "<C-s>", "<Esc>:wa<CR>", { noremap = true, silent = true })
-vim.api.nvim_set_keymap("v", "<C-s>", "<Esc>:w<CR>", { noremap = true, silent = true })
+vim.api.nvim_set_keymap("v", "<C-s>", "<Esc>:wa<CR>", { noremap = true, silent = true })
 -- Delete Bacspace
-vim.api.nvim_set_keymap("i", "<C-H>", "<C-W>", { noremap = true })
+vim.api.nvim_set_keymap("i", "<C-h>", ":db<CR>", { noremap = true })
+vim.api.nvim_set_keymap("i", "<C-h>", "<C-w>", { noremap = true })
+vim.api.nvim_set_keymap("i", "<C-h>", "<C-w>", { noremap = true })
+vim.api.nvim_set_keymap("i", "<C-H>", "<C-w>", { noremap = true })
+vim.api.nvim_set_keymap("i", "<C-BS>", "<C-w>", { noremap = true, silent = true })
+vim.api.nvim_set_keymap("i", "<M-BS>", "<C-w>", { noremap = true, silent = true })
+vim.api.nvim_set_keymap("i", "<C-Backspace>", "<C-w>", { noremap = true, silent = true })
+-- Ctrl A
+vim.api.nvim_set_keymap("n", "<C-A>", "ggVG", { noremap = true, silent = true })
+-- Ctrl Z
+vim.api.nvim_set_keymap("n", "<C-Z>", "u", { noremap = true, silent = true })
+vim.api.nvim_set_keymap("i", "<C-Z>", "u", { noremap = true, silent = true })
+-- Shift Select
+vim.api.nvim_set_keymap("n", "<S-Left>", "v<Left>", { noremap = true, silent = true })
+vim.api.nvim_set_keymap("n", "<S-Right>", "V<Right>", { noremap = true, silent = true })
+vim.api.nvim_set_keymap("n", "<S-Up>", "V<Up>", { noremap = true, silent = true })
+vim.api.nvim_set_keymap("n", "<S-Down>", "v<Down>", { noremap = true, silent = true })
+vim.api.nvim_set_keymap("n", "<S-Home>", "v0", { noremap = true, silent = true })
+vim.api.nvim_set_keymap("n", "<S-End>", "v$", { noremap = true, silent = true })
 
 -----------------KickStart.nvim
 vim.opt.hlsearch = true
@@ -131,8 +150,8 @@ require("lazy.lazy")
 ------------------- Lua Configurations-------------------
 
 -------------General Settings After Plugins--------------
-vim.api.nvim_command("highlight Normal guibg=NONE")
-vim.api.nvim_command("highlight LineNr guibg=NONE")
-vim.api.nvim_command("highlight CursorLineNr guibg=NONE")
-vim.api.nvim_command("highlight SignColumn guibg=NONE")
+-- vim.api.nvim_command("highlight Normal guibg=NONE")
+-- vim.api.nvim_command("highlight LineNr guibg=NONE")
+-- vim.api.nvim_command("highlight CursorLineNr guibg=NONE")
+-- vim.api.nvim_command("highlight SignColumn guibg=NONE")
 -------------General Settings After Plugins--------------
