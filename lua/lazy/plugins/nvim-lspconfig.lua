@@ -155,6 +155,7 @@ return { -- LSP Configuration & Plugins
 					"typescript",
 					"typescriptreact",
 					"typescript.tsx",
+          "vue",
 				},
 				init_options = {
 					plugins = {
@@ -164,11 +165,6 @@ return { -- LSP Configuration & Plugins
 							languages = { "javascript", "typescript", "vue" },
 						},
 					},
-				},
-				filetypes = {
-					"javascript",
-					"typescript",
-					"vue",
 				},
 				single_file_support = true,
 			},

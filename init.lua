@@ -96,7 +96,7 @@ vim.api.nvim_set_keymap("n", "<C-v>", '"+p', { noremap = true })
 vim.keymap.set("n", "<C-f>", "<cmd>lua require('fzf-lua').files()<CR>", { silent = true })
 -- Open WinFileExplorer shourcut
 -- vim.api.nvim_set_keymap('n', '<C-b>', ':silent !start explorer ' .. vim.fn.expand('%:p:h') .. '<CR><CR>', { silent = true })
-vim.api.nvim_set_keymap("n", "<C-b>", ":NvimTreeToggle<CR>", { noremap = true, silent = true })
+vim.api.nvim_set_keymap("n", "<C-N>", ":NvimTreeToggle<CR>", { noremap = true, silent = true })
 -- Ctrl S
 vim.api.nvim_set_keymap("n", "<C-s>", ":wa<CR>", { noremap = true, silent = true })
 vim.api.nvim_set_keymap("i", "<C-s>", "<Esc>:wa<CR>", { noremap = true, silent = true })
