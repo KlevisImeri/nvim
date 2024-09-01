@@ -148,7 +148,7 @@ return { -- LSP Configuration & Plugins
 			-- But for many setups, the LSP (`tsserver`) will work just fine
 			tsserver = {
 				cmd = { "typescript-language-server", "--stdio" },
-				filetype = {
+				filetypes = {
 					"javascript",
 					"javascriptreact",
 					"javascript.jsx",
@@ -161,7 +161,7 @@ return { -- LSP Configuration & Plugins
 					plugins = {
 						{
 							name = "@vue/typescript-plugin",
-							location = "C:/Users/Admin/AppData/Roaming/npm/@vue/typescript-plugin",
+							location = "/usr/local/lib/node_modules/@vue/typescript-plugin",
 							languages = { "javascript", "typescript", "vue" },
 						},
 					},
@@ -176,7 +176,7 @@ return { -- LSP Configuration & Plugins
 					},
 					typescript = {
 						-- Global install of typescript
-						--tsdk = '~/.nvm/versions/node/v20.11.1/lib/node_modules/typescript',
+						tsdk = '~/.nvm/versions/node/v20.11.1/lib/node_modules/typescript',
 						--tsdk = 'C:\Users\Admin\AppData\Roaming\npm\typescript'
 						-- Current project version and what I will likely use
 						tsdk = vim.fn.getcwd() .. "/node_modules/typescript/lib",

@@ -1,8 +1,7 @@
 # Nvim lua configuration
-The .vimrc settings file
 
-### Plugins I generally use
-- vim-commentary
-- vim-ariline
-- feline.nvim
-- nighfly colortheme
+My Nvim lua configuration.
+
+### Plugins
+- autocompletion [nvim-cmp](https://github.com/hrsh7th/nvim-cmp)
+- autoformat 
