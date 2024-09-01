@@ -1,5 +1,5 @@
 <div align="center">
-  <h1>My Nvim lua configuration 💻 📄.</h1>
+  <h1>My Nvim lua configuration 💻 📄</h1>
   <img src="nvim.png" alt="Nvim">
 </div>
 
