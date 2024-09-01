@@ -174,3 +174,32 @@ require("lazy.lazy")
 -- vim.api.nvim_command("highlight CursorLineNr guibg=NONE")
 -- vim.api.nvim_command("highlight SignColumn guibg=NONE")
 -------------General Settings After Plugins--------------
+
+--------------------------Git ---------------------------
+-- Define the custom Git commands
+
+-- :GitPush "commit comment here"
+vim.api.nvim_create_user_command("GitPush", function(opts)
+	local commit_message = opts.args
+	if commit_message == "" then
+		print("Error: No commit message provided")
+		return
+	end
+	-- Construct the shell command
+	local cmd = string.format("!git add . && git commit -m %s && git push", commit_message)
+	-- Execute the command
+	vim.cmd(cmd)
+end, { nargs = 1, complete = "file" })
+
+-- :GitCommit "commmit comment here"
+vim.api.nvim_create_user_command("GitCommit", function(opts)
+	local commit_message = opts.args
+	if commit_message == "" then
+		print("Error: No commit message provided")
+		return
+	end
+	-- Construct the shell command
+	local cmd = string.format("!git add . && git commit -m %s", commit_message)
+	-- Execute the command
+	vim.cmd(cmd)
+end, { nargs = 1 })
