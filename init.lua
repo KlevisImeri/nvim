@@ -81,7 +81,6 @@ vim.opt.scrolloff = 10
 -----------------------Shourcuts-------------------------
 -----------------Klevis
 vim.api.nvim_set_keymap("i", "jj", "<Esc>", { noremap = true })
-
 -- Add // for comments in the selected files
 vim.api.nvim_set_keymap("v", "//", ":s/^/\\/\\//<CR>", { noremap = true })
 vim.api.nvim_set_keymap("v", "//r", ":s/^\\/\\///<CR>", { noremap = true })
@@ -105,9 +104,9 @@ vim.keymap.set("n", "<C-f>", "<cmd>lua require('fzf-lua').files()<CR>", { silent
 vim.api.nvim_set_keymap("n", "<C-N>", ":NvimTreeToggle<CR>", { noremap = true, silent = true })
 
 -- Ctrl S
-vim.api.nvim_set_keymap("n", "<C-s>", ":w<CR>", { noremap = true, silent = true })
-vim.api.nvim_set_keymap("i", "<C-s>", "<Esc>:w<CR>", { noremap = true, silent = true })
-vim.api.nvim_set_keymap("v", "<C-s>", "<Esc>:w<CR>", { noremap = true, silent = true })
+vim.api.nvim_set_keymap("n", "<C-s>", ":wa<CR>", { noremap = true, silent = true })
+vim.api.nvim_set_keymap("i", "<C-s>", "<Esc>:wa<CR>", { noremap = true, silent = true })
+vim.api.nvim_set_keymap("v", "<C-s>", "<Esc>:wa<CR>", { noremap = true, silent = true })
 
 -- Delete Bacspace
 -- vim.api.nvim_set_keymap("i", "<C-H>", ":db<CR>", { noremap = true })

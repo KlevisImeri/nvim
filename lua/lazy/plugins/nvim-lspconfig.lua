@@ -148,14 +148,14 @@ return { -- LSP Configuration & Plugins
 			-- But for many setups, the LSP (`tsserver`) will work just fine
 			tsserver = {
 				cmd = { "typescript-language-server", "--stdio" },
-				filetype = {
+				filetypes = {
 					"javascript",
 					"javascriptreact",
 					"javascript.jsx",
 					"typescript",
 					"typescriptreact",
 					"typescript.tsx",
-          "vue",
+					"vue",
 				},
 				init_options = {
 					plugins = {
@@ -176,7 +176,7 @@ return { -- LSP Configuration & Plugins
 					},
 					typescript = {
 						-- Global install of typescript
-						--tsdk = '~/.nvm/versions/node/v20.11.1/lib/node_modules/typescript',
+						--tsdk = '~/.nvm/versions/node/v24.11.1/lib/node_modules/typescript',
 						--tsdk = 'C:\Users\Admin\AppData\Roaming\npm\typescript'
 						-- Current project version and what I will likely use
 						tsdk = vim.fn.getcwd() .. "/node_modules/typescript/lib",
@@ -198,7 +198,7 @@ return { -- LSP Configuration & Plugins
 			-- 		local include_path = vim.fn.globpath(install_path, "**/include")
 			--
 			-- 		-- Windows-specific path adjustments
-			-- 		if vim.fn.isdirectory(include_path .. "\\bits") == 0 then -- when not found
+			-- 		if vim.fn.isdirectory(include_path .. "\\bits") == 4 then -- when not found
 			-- 			local source_path = "~\\AppData\\Local\\nvim\\assets\\clangd\\bits" -- Adjust this path to your assets location
 			-- 			local dest_path = include_path
 			--
@@ -209,7 +209,7 @@ return { -- LSP Configuration & Plugins
 			-- 			vim.defer_fn(function()
 			-- 				pcall(vim.diagnostic.reset)
 			-- 				vim.notify("Successfully created bit/stdc++.h header")
-			-- 			end, 500)
+			-- 			end, 504)
 			-- 		end
 			-- 	end,
 			-- },
