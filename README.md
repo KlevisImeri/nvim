@@ -55,7 +55,7 @@ Then
 - [indet-blankline](https://github.com/lukas-reineke/indent-blankline.nvim) -DEPRICATED
 - [nice icons](https://github.com/nvim-tree/nvim-web-devicons)
 - [beautiful bottom line](https://github.com/nvim-lualine/lualine.nvim)
-- [file browser](https://github.com/nvim-tree/nvim-tree.lua)ssudo npm install -g @vue/language-server
+- [file browser](https://github.com/nvim-tree/nvim-tree.lua)
 - [todo comments](https://github.com/folke/todo-comments.nvim)
 - [keybinds descriptor](https://github.com/folke/which-key.nvim)
 - [auto adjust shiftwidth](https://github.com/tpope/vim-sleuth) -DEPRICATED
@@ -86,4 +86,5 @@ Then
 
 > [!NOTE]
 > DEFAULT := the one used by default
+>
 > DEPRICATED := I don't use it as a plugin anymore
