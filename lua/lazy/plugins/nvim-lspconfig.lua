@@ -161,7 +161,7 @@ return { -- LSP Configuration & Plugins
 					plugins = {
 						{
 							name = "@vue/typescript-plugin",
-							location = "C:/Users/Admin/AppData/Roaming/npm/@vue/typescript-plugin",
+							location = "/usr/local/lib/node_modules/@vue/typescript-plugin",
 							languages = { "javascript", "typescript", "vue" },
 						},
 					},
