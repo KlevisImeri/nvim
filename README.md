@@ -1,13 +1,15 @@
-# Nvim lua configuration
+<div align="center">
+  <h1>My Nvim lua configuration 💻 📄.</h1>
+  <img src="nvim.png" alt="Nvim">
+</div>
 
-My Nvim lua configuration.
+---
 
-### Setup
+## Setup
 
 - Install [neovim](https://github.com/neovim/neovim/blob/master/INSTALL.md) for your current OS.
 - Install [node & npm](https://nodejs.org/en).
 
----
 
 ##### Windows
 
@@ -46,7 +48,10 @@ Then
 > Use `:checkhealth` to see what you what program you are missing and install them
 
 
-### Plugins
+---
+
+
+## Plugins
 
 ##### Editor
 - [beautiful tabs header](https://github.com/akinsho/bufferline.nvim)
