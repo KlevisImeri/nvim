@@ -1,5 +1,5 @@
 --------------------General Settings---------------------
-vim.g.python3_host_prog = "D:\\Program Files\\Pyenv\\pyenv-win\\versions\\3.12.1\\python.exe"
+-- vim.g.python3_host_prog = "D:\\Program Files\\Pyenv\\pyenv-win\\versions\\3.12.1\\python.exe"
 -----------------Klevis
 -- Encoding
 vim.opt.encoding = "utf-8"
