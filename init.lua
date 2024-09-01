@@ -124,13 +124,25 @@ vim.api.nvim_set_keymap("n", "<C-A>", "ggVG", { noremap = true, silent = true })
 vim.api.nvim_set_keymap("n", "<C-Z>", "u", { noremap = true, silent = true })
 vim.api.nvim_set_keymap("i", "<C-Z>", "u", { noremap = true, silent = true })
 
+-- Ctrl X
+vim.api.nvim_set_keymap("n", "<C-x>", '"*dd', { noremap = true, silent = true })
+vim.api.nvim_set_keymap("v", "<C-x>", '"*d', { noremap = true, silent = true })
+
 -- Shift Select
 vim.api.nvim_set_keymap("n", "<S-Left>", "v<Left>", { noremap = true, silent = true })
 vim.api.nvim_set_keymap("n", "<S-Right>", "V<Right>", { noremap = true, silent = true })
-vim.api.nvim_set_keymap("n", "<S-Up>", "V<Up>", { noremap = true, silent = true })
-vim.api.nvim_set_keymap("n", "<S-Down>", "v<Down>", { noremap = true, silent = true })
+vim.api.nvim_set_keymap("n", "<S-Up>", "Vk", { noremap = true, silent = true })
+vim.api.nvim_set_keymap("n", "<S-Down>", "Vj", { noremap = true, silent = true })
+vim.api.nvim_set_keymap("n", "<S-Up>", "Vk", { noremap = true, silent = true })
+vim.api.nvim_set_keymap("n", "<S-Down>", "Vj", { noremap = true, silent = true })
 vim.api.nvim_set_keymap("n", "<S-Home>", "v0", { noremap = true, silent = true })
 vim.api.nvim_set_keymap("n", "<S-End>", "v$", { noremap = true, silent = true })
+
+-- Alt Arrows
+vim.api.nvim_set_keymap("n", "<A-Up>", ":m .-2<CR>==", { noremap = true, silent = true })
+vim.api.nvim_set_keymap("n", "<A-Down>", ":m .+1<CR>==", { noremap = true, silent = true })
+vim.api.nvim_set_keymap("v", "<A-Up>", ":m '<-2<CR>gv=gv", { noremap = true, silent = true })
+vim.api.nvim_set_keymap("v", "<A-Down>", ":m '>+1<CR>gv=gv", { noremap = true, silent = true })
 
 -----------------KickStart.nvim
 vim.opt.hlsearch = true
