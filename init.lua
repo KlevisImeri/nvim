@@ -185,9 +185,7 @@ vim.api.nvim_create_user_command("GitPush", function(opts)
 		print("Error: No commit message provided")
 		return
 	end
-	-- Construct the shell command
 	local cmd = string.format("!git add . && git commit -m %s && git push", commit_message)
-	-- Execute the command
 	vim.cmd(cmd)
 end, { nargs = 1, complete = "file" })
 
@@ -198,8 +196,6 @@ vim.api.nvim_create_user_command("GitCommit", function(opts)
 		print("Error: No commit message provided")
 		return
 	end
-	-- Construct the shell command
 	local cmd = string.format("!git add . && git commit -m %s", commit_message)
-	-- Execute the command
 	vim.cmd(cmd)
 end, { nargs = 1 })
