@@ -81,26 +81,34 @@ vim.opt.scrolloff = 10
 -----------------------Shourcuts-------------------------
 -----------------Klevis
 vim.api.nvim_set_keymap("i", "jj", "<Esc>", { noremap = true })
+
 -- Add // for comments in the selected files
 vim.api.nvim_set_keymap("v", "//", ":s/^/\\/\\//<CR>", { noremap = true })
 vim.api.nvim_set_keymap("v", "//r", ":s/^\\/\\///<CR>", { noremap = true })
+
 -- Run the bat scirpt
 vim.api.nvim_set_keymap("n", "<F5>", ":wa<CR>:botright split | resize 16<CR>:term r.bat<CR>", { noremap = true })
 vim.api.nvim_set_keymap("n", "<C-a>", "ggVG", { noremap = true })
+
 -- Copy to clipboard
 vim.api.nvim_set_keymap("v", "<C-c>", '"+y', { noremap = true })
+
 -- Paste from clipboard
 vim.api.nvim_set_keymap("i", "<C-v>", '<Esc>"+p', { noremap = true })
 vim.api.nvim_set_keymap("n", "<C-v>", '"+p', { noremap = true })
+
 -- Fzf shourcut
 vim.keymap.set("n", "<C-f>", "<cmd>lua require('fzf-lua').files()<CR>", { silent = true })
+
 -- Open WinFileExplorer shourcut
 -- vim.api.nvim_set_keymap('n', '<C-b>', ':silent !start explorer ' .. vim.fn.expand('%:p:h') .. '<CR><CR>', { silent = true })
 vim.api.nvim_set_keymap("n", "<C-N>", ":NvimTreeToggle<CR>", { noremap = true, silent = true })
+
 -- Ctrl S
-vim.api.nvim_set_keymap("n", "<C-s>", ":wa<CR>", { noremap = true, silent = true })
-vim.api.nvim_set_keymap("i", "<C-s>", "<Esc>:wa<CR>", { noremap = true, silent = true })
-vim.api.nvim_set_keymap("v", "<C-s>", "<Esc>:wa<CR>", { noremap = true, silent = true })
+vim.api.nvim_set_keymap("n", "<C-s>", ":w<CR>", { noremap = true, silent = true })
+vim.api.nvim_set_keymap("i", "<C-s>", "<Esc>:w<CR>", { noremap = true, silent = true })
+vim.api.nvim_set_keymap("v", "<C-s>", "<Esc>:w<CR>", { noremap = true, silent = true })
+
 -- Delete Bacspace
 -- vim.api.nvim_set_keymap("i", "<C-H>", ":db<CR>", { noremap = true })
 -- vim.api.nvim_set_keymap("i", "<C-H>", "<C-W>", { noremap = true })
@@ -109,11 +117,14 @@ vim.api.nvim_set_keymap("i", "<C-BS>", "<C-W>", { noremap = true, silent = true 
 -- vim.api.nvim_set_keymap("i", "<C-Backspace>", "<C-W>", { noremap = true, silent = true })
 -- vim.keymap.set("n", "<C-BS>", "dw", { silent = true })
 -- vim.keymap.set("n", "<C-Del>", "db", { silent = true })
+--
 -- Ctrl A
 vim.api.nvim_set_keymap("n", "<C-A>", "ggVG", { noremap = true, silent = true })
+
 -- Ctrl Z
 vim.api.nvim_set_keymap("n", "<C-Z>", "u", { noremap = true, silent = true })
 vim.api.nvim_set_keymap("i", "<C-Z>", "u", { noremap = true, silent = true })
+
 -- Shift Select
 vim.api.nvim_set_keymap("n", "<S-Left>", "v<Left>", { noremap = true, silent = true })
 vim.api.nvim_set_keymap("n", "<S-Right>", "V<Right>", { noremap = true, silent = true })
