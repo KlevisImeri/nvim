@@ -137,6 +137,8 @@ return { -- LSP Configuration & Plugins
 		local servers = {
 			-- ccls = {},
 			clangd = {},
+			bashls = {},
+			kotlin_language_server = {},
 			-- gopls = {}
 			-- pyright = {},
 			-- rust_analyzer = {},
@@ -146,7 +148,7 @@ return { -- LSP Configuration & Plugins
 			--    https://github.com/pmizio/typescript-tools.nvim
 			--
 			-- But for many setups, the LSP (`tsserver`) will work just fine
-			tsserver = {
+			ts_ls = {
 				cmd = { "typescript-language-server", "--stdio" },
 				filetypes = {
 					"javascript",
@@ -244,6 +246,7 @@ return { -- LSP Configuration & Plugins
 		local ensure_installed = vim.tbl_keys(servers or {})
 		vim.list_extend(ensure_installed, {
 			"stylua", -- Used to format lua code
+			"ktlint",
 		})
 		require("mason-tool-installer").setup({ ensure_installed = ensure_installed })
 
