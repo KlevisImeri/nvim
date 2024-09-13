@@ -7,6 +7,9 @@ vim.opt.encoding = "utf-8"
 -- Show line numbers
 vim.opt.number = true
 
+-- Set clipboard to unnamed plus
+vim.opt.clipboard:append("unnamedplus")
+
 -- Status bar
 vim.opt.laststatus = 2
 
