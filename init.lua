@@ -202,3 +202,7 @@ vim.api.nvim_create_user_command("GitCommit", function(opts)
 	local cmd = string.format("!git add . && git commit -m %s", commit_message)
 	vim.cmd(cmd)
 end, { nargs = 1 })
+
+vim.api.nvim_create_user_command("GitLog", function()
+	vim.cmd("Git log --oneline --graph --all --decorate")
+end, {})
