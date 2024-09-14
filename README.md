@@ -34,7 +34,7 @@ nvim
 ```
 
 >![ERROR]
->Don't use the linux branch is depricated
+> Don't use the linux branch is depricated
 
 ---
 
