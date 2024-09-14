@@ -125,6 +125,15 @@ return { -- LSP Configuration & Plugins
 		local capabilities = vim.lsp.protocol.make_client_capabilities()
 		capabilities = vim.tbl_deep_extend("force", capabilities, require("cmp_nvim_lsp").default_capabilities())
 
+		-- Findind some plugins According to the system
+		local os = vim.loop.os_uname().sysname
+		local ts_plug_loc
+
+		if os == "Windows_NT" then
+			ts_plug_loc = "C:/Users/Admin/AppData/Roaming/npm/typescript-plugin"
+		else
+			ts_plug_loc = "/usr/local/lib/node_modules/@vue/typescript-plugin"
+		end
 		-- Enable the following language servers
 		--  Feel free to add/remove any LSPs that you want here. They will automatically be installed.
 		--
@@ -163,8 +172,7 @@ return { -- LSP Configuration & Plugins
 					plugins = {
 						{
 							name = "@vue/typescript-plugin",
-							-- location = "/usr/local/lib/node_modules/@vue/typescript-plugin",
-							location = "C:/Users/Admin/AppData/Roaming/npm/typescript-plugin",
+							location = ts_plug_loc,
 							languages = { "javascript", "typescript", "vue" },
 						},
 					},
