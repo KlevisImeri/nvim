@@ -33,6 +33,9 @@ npm install -g  @vue/typescript-plugin @vue/language-server typescript-language-
 nvim 
 ```
 
+>![ERROR]
+>Don't use the linux branch is depricated
+
 ---
 
 Then
