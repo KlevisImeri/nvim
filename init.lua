@@ -201,5 +201,5 @@ vim.api.nvim_create_user_command("GitCommit", function(opts)
 end, { nargs = 1 })
 
 vim.api.nvim_create_user_command("GitLog", function()
-	vim.cmd("Git log --oneline --graph --all --decorate")
+	vim.cmd("!git log --oneline --graph --all --decorate")
 end, {})
