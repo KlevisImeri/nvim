@@ -33,7 +33,7 @@ npm install -g  @vue/typescript-plugin @vue/language-server typescript-language-
 nvim 
 ```
 
->![ERROR]
+> [!ERROR]
 > Don't use the linux branch is depricated
 
 ---
@@ -47,7 +47,7 @@ Then
 - `S` - sync
 
 
->![WARNING]
+> [!WARNING]
 > Use `:checkhealth` to see what you what program you are missing and install them
 
 
