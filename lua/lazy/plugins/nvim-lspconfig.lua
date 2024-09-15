@@ -148,6 +148,7 @@ return { -- LSP Configuration & Plugins
 			clangd = {},
 			bashls = {},
 			kotlin_language_server = {},
+			jdtls = {},
 			-- gopls = {}
 			-- pyright = {},
 			-- rust_analyzer = {},
