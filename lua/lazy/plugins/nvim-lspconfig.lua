@@ -147,7 +147,7 @@ return { -- LSP Configuration & Plugins
 			-- ccls = {},
 			clangd = {},
 			bashls = {},
-			kotlin_language_server = {},
+			-- kotlin_language_server = {},
 			jdtls = {},
 			-- gopls = {}
 			pyright = {},
