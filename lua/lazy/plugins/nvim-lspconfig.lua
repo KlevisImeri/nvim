@@ -148,8 +148,10 @@ return { -- LSP Configuration & Plugins
 			clangd = {},
 			bashls = {},
 			-- kotlin_language_server = {},
+			jdtls = {},
 			-- gopls = {}
-			-- pyright = {},
+			pyright = {},
+			-- pylsp = {},
 			-- rust_analyzer = {},
 			-- ... etc. See `:help lspconfig-all` for a list of all the pre-configured LSPs
 			--
