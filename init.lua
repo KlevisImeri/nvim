@@ -1,5 +1,7 @@
---------------------General Settings---------------------
--- vim.g.python3_host_prog = "D:\\Program Files\\Pyenv\\pyenv-win\\versions\\3.12.1\\python.exe"
+-------------------General Settings---------------------
+-- if vim.loop.os_uname().sysname == "Windows_NT" then
+-- 	vim.g.python3_host_prog = "D:\\Program Files\\Pyenv\\pyenv-win\\versions\\3.12.1\\python.exe"
+-- end
 -----------------Klevis
 -- Encoding
 vim.opt.encoding = "utf-8"
