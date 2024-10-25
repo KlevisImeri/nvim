@@ -149,6 +149,12 @@ vim.api.nvim_set_keymap("n", "<A-Down>", ":m .+1<CR>==", { noremap = true, silen
 vim.api.nvim_set_keymap("v", "<A-Up>", ":m '<-2<CR>gv=gv", { noremap = true, silent = true })
 vim.api.nvim_set_keymap("v", "<A-Down>", ":m '>+1<CR>gv=gv", { noremap = true, silent = true })
 
+-- Shift Tab
+vim.api.nvim_set_keymap("n", "<S-Tab>", "<<", { noremap = true, silent = true })
+vim.api.nvim_set_keymap("v", "<S-Tab>", "<gv", { noremap = true, silent = true })
+
+-- Tab to move in normal mode
+vim.api.nvim_set_keymap("n", "<Tab>", "w", { noremap = true, silent = true })
 -----------------KickStart.nvim
 vim.opt.hlsearch = true
 vim.keymap.set("n", "<Esc>", "<cmd>nohlsearch<CR>")

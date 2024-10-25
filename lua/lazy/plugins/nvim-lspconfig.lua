@@ -196,6 +196,7 @@ return { -- LSP Configuration & Plugins
 					},
 				},
 			},
+
 			-- clangd = {
 			-- 	filetypes = { "c", "cpp" },
 			-- 	cmd = {
