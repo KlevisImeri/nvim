@@ -49,6 +49,18 @@ return { -- Fuzzy Finder (files, lsp, etc)
 			--  All the info you're looking for is in `:help telescope.setup()`
 			--
 			defaults = {
+				layout_config = {
+					horizontal = {
+						width = 0.95,
+						height = 0.95,
+						preview_width = 0.6,  -- Allocate more space to preview
+					},
+					vertical = {
+						width = 0.95,
+						height = 0.95,
+						preview_height = 0.8, -- Bigger preview area in vertical layout
+					},
+				},
 				-- mappings = {
 				--   i = { ['<c-enter>'] = 'to_fuzzy_refine' },
 				-- },
