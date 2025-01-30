@@ -6,11 +6,11 @@ return {
 			padding = true,
 			sticky = true,
 			toggler = {
-				line = "<C-_>",
+				line = "<C-/>",
 				block = "gbc",
 			},
 			opleader = {
-				line = "<C-_>",
+				line = "<C-/>",
 				block = "gb",
 			},
 			extra = {
