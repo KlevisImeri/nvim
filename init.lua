@@ -122,6 +122,14 @@ vim.api.nvim_create_user_command("GitLog", function()
   vim.cmd("!git log --oneline --graph --all --decorate")
 end, {})
 
+vim.api.nvim_create_user_command("GitStatus", function()
+  vim.cmd("!git status")
+end, { nargs = 0 })
+
+vim.api.nvim_create_user_command("GitTree", function()
+  vim.cmd("!git log --graph --decorate --oneline")
+end, { nargs = 0 })
+
 vim.api.nvim_create_autocmd("BufReadPost", {
   pattern = { "*.pdf", "*.png", "*.jpg", "*.jpeg", "*.svg" },
   callback = function()
