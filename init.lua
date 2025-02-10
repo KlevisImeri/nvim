@@ -82,6 +82,20 @@ vim.api.nvim_set_keymap("t", "<Esc>", "<C-\\><C-n>", { noremap = true, silent = 
 vim.keymap.set("n", "<Esc>", "<cmd>nohlsearch<CR>")
 -----------------------Shourcuts-------------------------
 
+-----------------------Clipboard-------------------------
+vim.g.clipboard = {
+  name = 'OSC 52',
+  copy = {
+    ['+'] = require('vim.ui.clipboard.osc52').copy('+'),
+    ['*'] = require('vim.ui.clipboard.osc52').copy('*'),
+  },
+  paste = {
+    ['+'] = require('vim.ui.clipboard.osc52').paste('+'),
+    ['*'] = require('vim.ui.clipboard.osc52').paste('*'),
+  },
+}
+-----------------------Clipboard-------------------------
+
 -----------------------Transparent-----------------------
 -- vim.api.nvim_command("highlight Normal guibg=NONE")
 -- vim.api.nvim_command("highlight LineNr guibg=NONE")
