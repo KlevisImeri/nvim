@@ -1,7 +1,6 @@
 -----------------Options-----------------
 vim.opt.encoding = "utf-8"
 vim.opt.number = true
-vim.opt.clipboard:append("unnamedplus")
 vim.opt.laststatus = 2
 vim.opt.termguicolors = true
 vim.opt.shiftwidth = 2
@@ -90,43 +89,46 @@ vim.keymap.set("n", "<Esc>", "<cmd>nohlsearch<CR>")
 -- vim.api.nvim_command("highlight SignColumn guibg=NONE")
 -----------------------Transparent-----------------------
 
-----------------------AutoCommnads-----------------------
--- Highlight when yanking (copying) text
+------------------------Functions------------------------
 vim.api.nvim_create_autocmd("TextYankPost", {
-	desc = "Highlight when yanking (copying) text",
-	group = vim.api.nvim_create_augroup("kickstart-highlight-yank", { clear = true }),
-	callback = function()
-		vim.highlight.on_yank()
-	end,
+  desc = "Highlight when yanking (copying) text",
+  group = vim.api.nvim_create_augroup("kickstart-highlight-yank", { clear = true }),
+  callback = function()
+    vim.highlight.on_yank()
+  end,
 })
-----------------------AutoCommnads-----------------------
 
---------------------------Git ---------------------------
--- :GitPush "commit comment here"
 vim.api.nvim_create_user_command("GitPush", function(opts)
-	local commit_message = opts.args
-	if commit_message == "" then
-		print("Error: No commit message provided")
-		return
-	end
-	local cmd = string.format("!git add . && git commit -m %s && git push", commit_message)
-	vim.cmd(cmd)
+  local commit_message = opts.args
+  if commit_message == "" then
+    print("Error: No commit message provided")
+    return
+  end
+  local cmd = string.format("!git add . && git commit -m %s && git push", commit_message)
+  vim.cmd(cmd)
 end, { nargs = 1, complete = "file" })
 
--- :GitCommit "commmit comment here"
 vim.api.nvim_create_user_command("GitCommit", function(opts)
-	local commit_message = opts.args
-	if commit_message == "" then
-		print("Error: No commit message provided")
-		return
-	end
-	local cmd = string.format("!git add . && git commit -m %s", commit_message)
-	vim.cmd(cmd)
+  local commit_message = opts.args
+  if commit_message == "" then
+    print("Error: No commit message provided")
+    return
+  end
+  local cmd = string.format("!git add . && git commit -m %s", commit_message)
+  vim.cmd(cmd)
 end, { nargs = 1 })
 
 vim.api.nvim_create_user_command("GitLog", function()
-	vim.cmd("!git log --oneline --graph --all --decorate")
+  vim.cmd("!git log --oneline --graph --all --decorate")
 end, {})
---------------------------Git ---------------------------
+
+vim.api.nvim_create_autocmd("BufReadPost", {
+  pattern = { "*.pdf", "*.png", "*.jpg", "*.jpeg", "*.svg" },
+  callback = function()
+    vim.fn.jobstart({ "firefox", vim.fn.expand("%") }, { detach = true })
+    vim.cmd("bdelete!")
+  end,
+})
+------------------------Functions------------------------
 
 require("lazy.lazy")
