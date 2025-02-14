@@ -145,9 +145,9 @@ vim.api.nvim_create_user_command("GitTree", function()
 end, { nargs = 0 })
 
 vim.api.nvim_create_autocmd("BufReadPost", {
-  pattern = { "*.pdf", "*.png", "*.jpg", "*.jpeg", "*.svg", "*.md" },
+  pattern = { "*.pdf", "*.png", "*.jpg", "*.jpeg", "*.svg", "*.md", "*.ico" },
   callback = function()
-    vim.fn.jobstart({ "firefox", vim.fn.expand("%") }, { detach = true })
+    vim.fn.jobstart({ "firefox", vim.fn.expand("%") })
   end,
 })
 ------------------------Functions------------------------
