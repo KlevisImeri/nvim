@@ -30,6 +30,7 @@ vim.opt.cursorline = true
 vim.opt.scrolloff = 10
 vim.opt.hlsearch = true
 vim.opt.expandtab = true
+vim.opt.exrc = true
 -----------------Options-----------------
 
 -----------------------Shourcuts-------------------------
@@ -150,6 +151,16 @@ vim.api.nvim_create_autocmd("BufReadPost", {
     vim.fn.jobstart({ "firefox", vim.fn.expand("%") })
   end,
 })
+
+vim.api.nvim_create_user_command("MakerpgTerm", function()
+  local makeprg = vim.o.makeprg
+  local filename = vim.fn.expand('%')
+  local cmd = makeprg:gsub("%%", filename)
+  vim.cmd("terminal " .. cmd)
+  vim.cmd("copen")
+end, { nargs = 0 })
+
 ------------------------Functions------------------------
+
 
 require("lazy.lazy")
