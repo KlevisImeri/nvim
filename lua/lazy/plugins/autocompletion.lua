@@ -17,6 +17,7 @@ return {
     "kristijanhusak/vim-dadbod-completion",
     "petertriho/cmp-git",
     "hrsh7th/cmp-buffer",
+     -- "amarz45/nvim-cmp-buffer-lines",
 
     "onsails/lspkind.nvim",
     "js-everts/cmp-tailwind-colors",
@@ -130,6 +131,7 @@ return {
         { name = "treesitter", group_index = 1 },
         { name = "nvim_lua", group_index = 2 },        
         { name = "luasnip", group_index = 2 },        
+        -- { name = "buffer-lines", group_index = 4 },
         { name = "path", group_index = 3 },
         { name = "latex_symbols", group_index = 4 },
         { name = "spell", group_index = 5 },
