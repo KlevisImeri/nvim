@@ -4,5 +4,9 @@ return {
     "nvim-lua/plenary.nvim",         -- required
     "nvim-telescope/telescope.nvim", -- optional
   },
-  config = true
+  config = function()
+    require("neogit").setup({
+      kind = "replace", -- Open Neogit in the current buffer
+    })
+  end
 }
