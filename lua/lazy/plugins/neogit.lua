@@ -1,12 +1,16 @@
 return {
   "NeogitOrg/neogit",
   dependencies = {
-    "nvim-lua/plenary.nvim",         -- required
-    "nvim-telescope/telescope.nvim", -- optional
+    "nvim-lua/plenary.nvim",
+    "nvim-telescope/telescope.nvim",
   },
   config = function()
+    vim.keymap.set("n", "<leader>g", function()
+      require("neogit").open()
+    end, { desc = "Open Neogit" })
+
     require("neogit").setup({
-      kind = "replace", -- Open Neogit in the current buffer
+      kind = "floating",
     })
   end
 }
