@@ -11,6 +11,16 @@ return {
 
     require("neogit").setup({
       kind = "floating",
+
+      commit_editor = {
+        kind = "floating",
+      },
+
+      integrations = {
+        telescope = true,
+      },
+
     })
+
   end
 }
