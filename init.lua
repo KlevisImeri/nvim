@@ -28,9 +28,9 @@ vim.opt.listchars = { tab = "» ", trail = "·", nbsp = "␣" }
 vim.opt.inccommand = "split"
 vim.opt.cursorline = true
 vim.opt.scrolloff = 10
-vim.opt.hlsearch = true
-vim.opt.expandtab = true
-vim.opt.exrc = true
+-- vim.opt.hlsearch = true
+-- vim.opt.expandtab = true
+-- vim.opt.exrc = true
 -----------------Options-----------------
 
 -----------------------Shourcuts-------------------------
@@ -59,9 +59,10 @@ vim.api.nvim_set_keymap("v", "<A-Up>", ":m '<-2<CR>gv=gv", { noremap = true, sil
 vim.api.nvim_set_keymap("v", "<A-Down>", ":m '>+1<CR>gv=gv", { noremap = true, silent = true })
 vim.api.nvim_set_keymap("n", "<S-Tab>", "<<", { noremap = true, silent = true })
 vim.api.nvim_set_keymap("v", "<S-Tab>", "<gv", { noremap = true, silent = true })
-vim.api.nvim_set_keymap("v", "<Tab>", ">gv", { noremap = true, silent = true })
 vim.api.nvim_set_keymap("v", "<BS>", '"_d', { noremap = true, silent = true })
-vim.api.nvim_set_keymap("n", "<Tab>", "w", { noremap = true, silent = true })
+-- vim.api.nvim_set_keymap("v", "<CS-o>", "<Tab>", { noremap = true, silent = true })
+-- vim.api.nvim_set_keymap("v", "<Tab>", ">gv", { noremap = true, silent = true })
+-- vim.api.nvim_set_keymap("n", "<Tab>", "w", { noremap = true, silent = true })
 vim.api.nvim_set_keymap("t", "<Esc>", "<C-\\><C-n>", { noremap = true, silent = true })
 vim.keymap.set("n", "<Esc>", "<cmd>nohlsearch<CR>")
 vim.api.nvim_set_keymap("n", "<S-Home>", "v0", { noremap = true, silent = true })
