@@ -11,6 +11,9 @@ return {
       view = {
         adaptive_size = true,
       },
+      renderer = {
+        group_empty = true,
+      },
     })
   end,
 }
