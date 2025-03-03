@@ -7,7 +7,7 @@ return {
   config = function()
     vim.keymap.set("n", "<leader>g", function()
       require("neogit").open()
-    end, { desc = "Open Neogit" })
+    end, { desc = "Open Neo[g]it" })
 
     require("neogit").setup({
       kind = "floating",

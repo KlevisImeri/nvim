@@ -33,6 +33,71 @@ vim.opt.expandtab = true
 vim.opt.exrc = true
 -----------------Options-----------------
 
+------------------------Functions------------------------
+vim.api.nvim_create_autocmd("TextYankPost", {
+  desc = "Highlight when yanking (copying) text",
+  group = vim.api.nvim_create_augroup("kickstart-highlight-yank", { clear = true }),
+  callback = function()
+    vim.highlight.on_yank()
+  end,
+})
+
+vim.api.nvim_create_user_command("GitPush", function(opts)
+  local commit_message = opts.args
+  if commit_message == "" then
+    print("Error: No commit message provided")
+    return
+  end
+  local cmd = string.format("!git add . && git commit -m %s && git push", commit_message)
+  vim.cmd(cmd)
+end, { nargs = 1, complete = "file" })
+
+vim.api.nvim_create_user_command("GitCommit", function(opts)
+  local commit_message = opts.args
+  if commit_message == "" then
+    print("Error: No commit message provided")
+    return
+  end
+  local cmd = string.format("!git add . && git commit -m %s", commit_message)
+  vim.cmd(cmd)
+end, { nargs = 1 })
+
+vim.api.nvim_create_user_command("GitLog", function()
+  vim.cmd("!git log --oneline --graph --all --decorate")
+end, {})
+
+vim.api.nvim_create_user_command("GitStatus", function()
+  vim.cmd("!git status")
+end, { nargs = 0 })
+
+vim.api.nvim_create_user_command("GitTree", function()
+  vim.cmd("!git log --graph --decorate --oneline")
+end, { nargs = 0 })
+
+vim.api.nvim_create_autocmd("BufReadPost", {
+  pattern = { "*.pdf", "*.png", "*.jpg", "*.jpeg", "*.svg", "*.md", "*.ico" },
+  callback = function()
+    vim.fn.jobstart({ "firefox", vim.fn.expand("%") })
+  end,
+})
+
+vim.api.nvim_create_user_command("MakerpgTerm", function()
+  local makeprg = vim.o.makeprg
+  local filename = vim.fn.expand('%')
+  local cmd = makeprg:gsub("%%", filename)
+  vim.cmd("terminal " .. cmd)
+  vim.cmd("copen")
+end, { nargs = 0 })
+
+local function toggle_macro_recording()
+  if vim.fn.reg_recording() == '' then
+    return 'qq'
+  else
+    return 'q'
+  end
+end
+------------------------Functions------------------------
+
 -----------------------Shourcuts-------------------------
 vim.api.nvim_set_keymap("n", "<C-CR>", ":wa<CR>:botright split | resize 16<CR>:term r.bat<CR>", { noremap = true })
 vim.api.nvim_set_keymap("n", "<C-a>", "ggVG", { noremap = true })
@@ -90,6 +155,8 @@ vim.keymap.set('n', '<C-Up>', '<C-y>', { noremap = true, silent = true })
 vim.keymap.set('n', '<C-S-Up>', '<C-v>k', { noremap = true, silent = true })
 vim.keymap.set('n', '<C-S-Down>', '<C-v>j', { noremap = true, silent = true })
 vim.keymap.set('n', 'gf','<C-w>f', { noremap = true, silent = true })
+vim.keymap.set('n', '<leader>m', toggle_macro_recording, { noremap = true, silent = true, expr = true })
+vim.keymap.set('v', '<leader>m', ":'<,'>norm @q<CR>", { noremap = true, silent = true })
 -----------------------Shourcuts-------------------------
 
 -----------------------Clipboard-------------------------
@@ -112,64 +179,5 @@ vim.g.clipboard = {
 -- vim.api.nvim_command("highlight CursorLineNr guibg=NONE")
 -- vim.api.nvim_command("highlight SignColumn guibg=NONE")
 -----------------------Transparent-----------------------
-
-------------------------Functions------------------------
-vim.api.nvim_create_autocmd("TextYankPost", {
-  desc = "Highlight when yanking (copying) text",
-  group = vim.api.nvim_create_augroup("kickstart-highlight-yank", { clear = true }),
-  callback = function()
-    vim.highlight.on_yank()
-  end,
-})
-
-vim.api.nvim_create_user_command("GitPush", function(opts)
-  local commit_message = opts.args
-  if commit_message == "" then
-    print("Error: No commit message provided")
-    return
-  end
-  local cmd = string.format("!git add . && git commit -m %s && git push", commit_message)
-  vim.cmd(cmd)
-end, { nargs = 1, complete = "file" })
-
-vim.api.nvim_create_user_command("GitCommit", function(opts)
-  local commit_message = opts.args
-  if commit_message == "" then
-    print("Error: No commit message provided")
-    return
-  end
-  local cmd = string.format("!git add . && git commit -m %s", commit_message)
-  vim.cmd(cmd)
-end, { nargs = 1 })
-
-vim.api.nvim_create_user_command("GitLog", function()
-  vim.cmd("!git log --oneline --graph --all --decorate")
-end, {})
-
-vim.api.nvim_create_user_command("GitStatus", function()
-  vim.cmd("!git status")
-end, { nargs = 0 })
-
-vim.api.nvim_create_user_command("GitTree", function()
-  vim.cmd("!git log --graph --decorate --oneline")
-end, { nargs = 0 })
-
-vim.api.nvim_create_autocmd("BufReadPost", {
-  pattern = { "*.pdf", "*.png", "*.jpg", "*.jpeg", "*.svg", "*.md", "*.ico" },
-  callback = function()
-    vim.fn.jobstart({ "firefox", vim.fn.expand("%") })
-  end,
-})
-
-vim.api.nvim_create_user_command("MakerpgTerm", function()
-  local makeprg = vim.o.makeprg
-  local filename = vim.fn.expand('%')
-  local cmd = makeprg:gsub("%%", filename)
-  vim.cmd("terminal " .. cmd)
-  vim.cmd("copen")
-end, { nargs = 0 })
-
-------------------------Functions------------------------
-
 
 require("lazy.lazy")
