@@ -89,6 +89,7 @@ vim.keymap.set('n', '<C-S-right>', 'vw', { noremap = true, silent = true })
 vim.keymap.set('n', '<C-Up>', '<C-y>', { noremap = true, silent = true })
 vim.keymap.set('n', '<C-S-Up>', '<C-v>k', { noremap = true, silent = true })
 vim.keymap.set('n', '<C-S-Down>', '<C-v>j', { noremap = true, silent = true })
+vim.keymap.set('n', 'gf','<C-w>f', { noremap = true, silent = true })
 -----------------------Shourcuts-------------------------
 
 -----------------------Clipboard-------------------------
