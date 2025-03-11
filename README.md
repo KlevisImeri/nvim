@@ -12,5 +12,8 @@
     - ciw, cw, co, ci), ci], ci[
 - U <-> u
 - gf <C-w>f
+- :g/<C-r><C-w>/norm @q
+- :s/\s*//.*/ remove all the commetns of type //
+
 > [!WARNING]
 > This is only tested for fedora linux with i3 spin.

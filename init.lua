@@ -157,6 +157,8 @@ vim.keymap.set('n', '<C-S-Down>', '<C-v>j', { noremap = true, silent = true })
 vim.keymap.set('n', 'gf','<C-w>f', { noremap = true, silent = true })
 vim.keymap.set('n', '<leader>m', toggle_macro_recording, { noremap = true, silent = true, expr = true })
 vim.keymap.set('v', '<leader>m', ":'<,'>norm @q<CR>", { noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', '<C-w>>', '20<C-w>>', { noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', '<C-w><', '20<C-w><', { noremap = true, silent = true })
 -----------------------Shourcuts-------------------------
 
 -----------------------Clipboard-------------------------

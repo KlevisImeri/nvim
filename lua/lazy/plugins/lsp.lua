@@ -57,6 +57,8 @@ return {
         "csharp_ls",
         "marksman",
         "volar",
+        "svelte",
+        "clangd"
         -- "jdtls", -- Bad
         -- "kotlin_language_server", -- Bad
         -- "dockerls",
@@ -75,6 +77,13 @@ return {
         end,
       },
     })
+
+    vim.diagnostic.config({
+      virtual_text = false
+    })
+
+    vim.o.updatetime = 250
+    vim.cmd [[autocmd CursorHold,CursorHoldI * lua vim.diagnostic.open_float(nil, {focus=false})]]
 
     local cmp_action = require("lsp-zero").cmp_action()
 
