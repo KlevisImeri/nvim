@@ -30,6 +30,8 @@ vim.opt.cursorline = true
 vim.opt.scrolloff = 10
 vim.opt.hlsearch = true
 vim.opt.expandtab = true
+vim.opt.spell = true
+vim.opt.spelllang = "en"
 vim.opt.exrc = true
 -----------------Options-----------------
 
