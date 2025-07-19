@@ -30,8 +30,8 @@ vim.opt.cursorline = true
 vim.opt.scrolloff = 10
 vim.opt.hlsearch = true
 vim.opt.expandtab = true
-vim.opt.spell = true
-vim.opt.spelllang = "en"
+-- vim.opt.spell = true
+-- vim.opt.spelllang = "en"
 vim.opt.exrc = true
 -----------------Options-----------------
 
@@ -90,6 +90,13 @@ vim.api.nvim_create_user_command("MakerpgTerm", function()
   vim.cmd("terminal " .. cmd)
   vim.cmd("copen")
 end, { nargs = 0 })
+
+vim.api.nvim_create_user_command('RmCom', function(opts)
+  local comment_char = opts.args
+  local escaped_char = vim.fn.escape(comment_char, '/')
+  local cmd = 'g/' .. escaped_char .. '/s/\\s*' .. escaped_char .. '.*//'
+  vim.api.nvim_exec(cmd, false)
+end,{ nargs = 1, desc = 'Remove comments, e.g., :RmCom //'})
 
 local function toggle_macro_recording()
   if vim.fn.reg_recording() == '' then
