@@ -33,70 +33,8 @@ vim.opt.expandtab = true
 -- vim.opt.spell = true
 -- vim.opt.spelllang = "en"
 vim.opt.exrc = true
+vim.opt.autochdir = true
 -----------------Options-----------------
-
-------------------------Functions------------------------
-vim.api.nvim_create_autocmd("TextYankPost", {
-  desc = "Highlight when yanking (copying) text",
-  group = vim.api.nvim_create_augroup("kickstart-highlight-yank", { clear = true }),
-  callback = function()
-    vim.highlight.on_yank()
-  end,
-})
-
-vim.api.nvim_create_user_command("GitPush", function(opts)
-  local commit_message = opts.args
-  if commit_message == "" then
-    print("Error: No commit message provided")
-    return
-  end
-  local cmd = string.format("!git add . && git commit -m %s && git push", commit_message)
-  vim.cmd(cmd)
-end, { nargs = 1, complete = "file" })
-
-vim.api.nvim_create_user_command("GitCommit", function(opts)
-  local commit_message = opts.args
-  if commit_message == "" then
-    print("Error: No commit message provided")
-    return
-  end
-  local cmd = string.format("!git add . && git commit -m %s", commit_message)
-  vim.cmd(cmd)
-end, { nargs = 1 })
-
-vim.api.nvim_create_user_command("GitLog", function()
-  vim.cmd("!git log --oneline --graph --all --decorate")
-end, {})
-
-vim.api.nvim_create_user_command("GitStatus", function()
-  vim.cmd("!git status")
-end, { nargs = 0 })
-
-vim.api.nvim_create_user_command("GitTree", function()
-  vim.cmd("!git log --graph --decorate --oneline")
-end, { nargs = 0 })
-
-vim.api.nvim_create_autocmd("BufReadPost", {
-  pattern = { "*.pdf", "*.png", "*.jpg", "*.jpeg", "*.svg", "*.md", "*.ico" },
-  callback = function()
-    vim.fn.jobstart({ "firefox", vim.fn.expand("%") })
-  end,
-})
-
-vim.api.nvim_create_user_command("MakerpgTerm", function()
-  local makeprg = vim.o.makeprg
-  local filename = vim.fn.expand('%')
-  local cmd = makeprg:gsub("%%", filename)
-  vim.cmd("terminal " .. cmd)
-  vim.cmd("copen")
-end, { nargs = 0 })
-
-vim.api.nvim_create_user_command('RmCom', function(opts)
-  local comment_char = opts.args
-  local escaped_char = vim.fn.escape(comment_char, '/')
-  local cmd = 'g/' .. escaped_char .. '/s/\\s*' .. escaped_char .. '.*//'
-  vim.api.nvim_exec(cmd, false)
-end,{ nargs = 1, desc = 'Remove comments, e.g., :RmCom //'})
 
 local function toggle_macro_recording()
   if vim.fn.reg_recording() == '' then
@@ -105,7 +43,6 @@ local function toggle_macro_recording()
     return 'q'
   end
 end
-------------------------Functions------------------------
 
 -----------------------Shourcuts-------------------------
 vim.api.nvim_set_keymap("n", "<C-CR>", ":wa<CR>:botright split | resize 16<CR>:term r.bat<CR>", { noremap = true })
@@ -191,4 +128,5 @@ vim.api.nvim_set_keymap('n', '<C-w><', '20<C-w><', { noremap = true, silent = tr
 -- vim.api.nvim_command("highlight SignColumn guibg=NONE")
 -----------------------Transparent-----------------------
 
+require('commands')
 require("lazy.lazy")
