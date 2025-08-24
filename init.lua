@@ -33,7 +33,7 @@ vim.opt.expandtab = true
 -- vim.opt.spell = true
 -- vim.opt.spelllang = "en"
 vim.opt.exrc = true
-vim.opt.autochdir = true
+vim.opt.autochdir = false
 -----------------Options-----------------
 
 local function toggle_macro_recording()
@@ -51,7 +51,7 @@ vim.api.nvim_set_keymap("v", "<C-c>", '"+y', { noremap = true })
 vim.api.nvim_set_keymap("i", "<C-v>", '<Esc>"+p', { noremap = true })
 vim.api.nvim_set_keymap("n", "<C-v>", '"+p', { noremap = true })
 vim.api.nvim_set_keymap("v", "<C-v>", '"_d"+P', { noremap = true, silent = true })
-vim.api.nvim_set_keymap("n", "<C-N>", ":NvimTreeToggle<CR>", { noremap = true, silent = true })
+vim.api.nvim_set_keymap("n", "<C-N>", ":NvimTreeFindFileToggle<CR>", { noremap = true, silent = true })
 vim.api.nvim_set_keymap("n", "<C-s>", ":wa<CR>", { noremap = true, silent = true })
 vim.api.nvim_set_keymap("i", "<C-s>", "<Esc>:wa<CR>", { noremap = true, silent = true })
 vim.api.nvim_set_keymap("v", "<C-s>", "<Esc>:wa<CR>", { noremap = true, silent = true })

@@ -53,7 +53,7 @@ vim.api.nvim_create_user_command("Firefox", function()
     return
   end
 
-  vim.fn.jobstart({ 'firefox', filename }, { 
+  vim.fn.jobstart({ 'firefox', filename }, {
     detach = true,
     on_exit = function(_, exit_code)
       if exit_code ~= 0 then
@@ -80,3 +80,27 @@ vim.api.nvim_create_user_command('RmCom', function(opts)
   local cmd = 'g/' .. escaped_char .. '/s/\\s*' .. escaped_char .. '.*//'
   vim.api.nvim_exec(cmd, false)
 end,{ nargs = 1, desc = 'Remove comments, e.g., :RmCom //'})
+
+vim.api.nvim_create_user_command("E", function(opts) 
+  local current_dir = vim.fn.expand('%:h') 
+  local new_filename = opts.args
+
+  if new_filename == "" then
+    vim.notify("Error: No filename provided", vim.log.levels.ERROR)
+    return
+  end
+
+  if current_dir == "" then
+    current_dir = vim.fn.getcwd() 
+  end
+
+  local full_path = current_dir .. "/" .. new_filename
+  vim.cmd("edit " .. vim.fn.fnameescape(full_path))
+  vim.cmd("write")
+  vim.notify("Created file: " .. full_path, vim.log.levels.INFO)
+end, {
+  nargs = 1,
+  desc = 'Create file in the current directory of the opened file',
+  complete = "file"
+})
+
