@@ -45,7 +45,7 @@ local function toggle_macro_recording()
 end
 
 -----------------------Shourcuts-------------------------
-vim.api.nvim_set_keymap("n", "<C-CR>", ":wa<CR>:botright split | resize 16<CR>:term r.bat<CR>", { noremap = true })
+vim.api.nvim_set_keymap("n", "<C-CR>", ":make<CR>", { noremap = true })
 vim.api.nvim_set_keymap("n", "<C-a>", "ggVG", { noremap = true })
 vim.api.nvim_set_keymap("v", "<C-c>", '"+y', { noremap = true })
 vim.api.nvim_set_keymap("i", "<C-v>", '<Esc>"+p', { noremap = true })
