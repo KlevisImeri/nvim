@@ -6,6 +6,7 @@
 ---
 #### Todo
 - Multiple Cursors
+- Git Update
  
 #### Commands to learn
 - c...
