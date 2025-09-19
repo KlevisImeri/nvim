@@ -104,3 +104,38 @@ end, {
   complete = "file"
 })
 
+vim.api.nvim_create_user_command("Source", function()
+  local config_dir = vim.fn.stdpath("config")
+  local init_file = config_dir .. "/init.lua"
+
+  local success, err = pcall(dofile, init_file)
+
+  if success then
+    vim.notify("Successfully sourced " .. init_file, vim.log.levels.INFO)
+  else
+    vim.notify(
+      "Error sourcing " .. init_file .. ". See quickfix list for details.",
+      vim.log.levels.ERROR
+    )
+
+    local filename, lnum, message = string.match(err, "([^:]+):(%d+): (.*)")
+
+    local qf_list = {}
+    if filename and lnum and message then
+      table.insert(qf_list, {
+        filename = filename,
+        lnum = tonumber(lnum), 
+        text = message,
+      })
+    else
+      table.insert(qf_list, {
+        filename = init_file,
+        lnum = 1, 
+        text = err, 
+      })
+    end
+
+    vim.fn.setqflist(qf_list)
+    vim.cmd("copen")
+  end
+end, { desc = "Source the main init.lua configuration file" })
