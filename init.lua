@@ -105,6 +105,7 @@ vim.keymap.set('n', '<leader>m', toggle_macro_recording, { noremap = true, silen
 vim.keymap.set('v', '<leader>m', ":'<,'>norm @q<CR>", { noremap = true, silent = true })
 vim.api.nvim_set_keymap('n', '<C-w>>', '20<C-w>>', { noremap = true, silent = true })
 vim.api.nvim_set_keymap('n', '<C-w><', '20<C-w><', { noremap = true, silent = true })
+vim.keymap.set('n', 'cd', 'ipwd | xclip -selection clipboard<CR><C-\\><C-n>:cd <C-r>+<CR>', { noremap = true, silent = false })
 -----------------------Shourcuts-------------------------
 
 -----------------------Clipboard-------------------------
