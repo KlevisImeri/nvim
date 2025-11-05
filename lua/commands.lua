@@ -1,3 +1,11 @@
+vim.api.nvim_create_autocmd("TermClose", {
+  callback = function()
+    if vim.fn.winnr("$") == 1 then
+      vim.cmd("quit")
+    end
+  end,
+})
+
 vim.api.nvim_create_autocmd("TextYankPost", {
   desc = "Highlight when yanking (copying) text",
   group = vim.api.nvim_create_augroup("kickstart-highlight-yank", { clear = true }),
