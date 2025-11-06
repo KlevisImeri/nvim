@@ -29,8 +29,9 @@ require("lazy").setup("lazy.plugins", {
       lazy = "💤 ",
     },
   },
-  checker = {
-    enabled = false
+  change_detection = {
+    enabled = true,
+    notify = false, 
   },
   performance = {
     rtp = {
