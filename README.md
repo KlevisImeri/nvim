@@ -5,8 +5,10 @@
 
 ---
 #### Todo
+- Git diff but add options to write branch name
+- Update (update nvim buy git pull)
+- Ctrl+a i want to stay in the same place  
 - Multiple Cursors
-- Git Update
  
 #### Commands to learn
 - c...
