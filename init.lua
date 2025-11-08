@@ -1,4 +1,4 @@
 require("options")
 require("shourcuts")
-require("commands.commands")
+require("func.func")
 require("lazy.lazy")

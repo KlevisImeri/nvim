@@ -1,3 +1,5 @@
+local parsing = require("func.parsing")
+
 local function toggle_macro_recording()
   if vim.fn.reg_recording() == '' then
     return 'qq'
@@ -10,17 +12,36 @@ local function oil_toggle()
   if vim.bo.filetype == "oil" then
     require("oil").close()
   elseif vim.bo.buftype == "terminal" then
-    vim.cmd('e .')
+    local prompt_line = parsing.get_terminal_prompt_line()
+    local path = parsing.extract_path_from_prompt(prompt_line)
+    vim.notify("Path: " .. (path or "nil"), vim.log.levels.INFO) 
+    if path then
+      require("oil").open(path)
+    else
+      require("oil").open()
+    end
   else
     require("oil").open()
   end
 end
 
+local function cd_to_terminal_path()
+  local prompt_line = parsing.get_terminal_prompt_line()
+  local path = parsing.extract_path_from_prompt(prompt_line)
+  
+  if path then
+    vim.cmd("cd " .. path)
+    vim.notify("Changed directory to: " .. path, vim.log.levels.INFO)
+  else
+    vim.notify("Could not extract path from prompt", vim.log.levels.WARN)
+  end
+end
 
+-- WARN: only use <leader> key when you are in normal mode else there will be
+--       a lag in the insert mode when you press space, because its wating for
+--       the next command
 vim.api.nvim_set_keymap("n", "<C-CR>", ":term ./r.sh<CR>", { noremap = true })
 vim.keymap.set('n', '<leader>e', ":ParseErrors<CR>", { noremap = true, silent = true })
-vim.keymap.set('i', '<leader>e', ":ParseErrors<CR>", { noremap = true, silent = true })
-vim.keymap.set('v', '<leader>e', ":ParseErrors<CR>", { noremap = true, silent = true })
 vim.api.nvim_set_keymap("n", "<C-a>", "ggVG", { noremap = true })
 vim.api.nvim_set_keymap("v", "<C-c>", '"+y', { noremap = true })
 vim.api.nvim_set_keymap("i", "<C-v>", '<Esc>"+p', { noremap = true })
@@ -80,4 +101,5 @@ vim.keymap.set('n', '<leader>m', toggle_macro_recording, { noremap = true, silen
 vim.keymap.set('v', '<leader>m', ":'<,'>norm @q<CR>", { noremap = true, silent = true })
 vim.api.nvim_set_keymap('n', '<C-w>>', '20<C-w>>', { noremap = true, silent = true })
 vim.api.nvim_set_keymap('n', '<C-w><', '20<C-w><', { noremap = true, silent = true })
-vim.keymap.set('n', 'cd', 'ipwd | xclip -selection clipboard<CR><C-\\><C-n>:cd <C-r>+<CR>', { noremap = true, silent = false })
+vim.keymap.set('n', 'cd', cd_to_terminal_path, { noremap = true, silent = false })
+
