@@ -46,6 +46,14 @@ local function cd_to_terminal_path()
   oil_toggle()
 end
 
+local function clear_term()
+  vim.cmd('startinsert')
+  vim.api.nvim_input("clear" .. "<CR>")
+  local org_scrollback = vim.opt_local.scrollback._value
+  vim.cmd("set scrollback=1")
+  vim.cmd("set scrollback=" .. org_scrollback)
+end
+
 -- WARN: only use <leader> key when you are in normal mode else there will be
 --       a lag in the insert mode when you press space, because its wating for
 --       the next command
@@ -111,4 +119,4 @@ vim.keymap.set('v', '<leader>m', ":'<,'>norm @q<CR>", { noremap = true, silent =
 vim.api.nvim_set_keymap('n', '<C-w>>', '20<C-w>>', { noremap = true, silent = true })
 vim.api.nvim_set_keymap('n', '<C-w><', '20<C-w><', { noremap = true, silent = true })
 vim.keymap.set('n', 'cd', cd_to_terminal_path, { noremap = true, silent = false })
-
+vim.keymap.set('n','<leader>cl', clear_term, { desc = "[C]lears the [t]erminal"})
