@@ -28,13 +28,22 @@ end
 local function cd_to_terminal_path()
   local prompt_line = parsing.get_terminal_prompt_line()
   local path = parsing.extract_path_from_prompt(prompt_line)
-  
-  if path then
-    vim.cmd("cd " .. path)
-    vim.notify("Changed directory to: " .. path, vim.log.levels.INFO)
-  else
+
+  if not path then
     vim.notify("Could not extract path from prompt", vim.log.levels.WARN)
+    return
   end
+
+  vim.cmd("cd " .. path)
+  vim.notify("Changed directory to: " .. path, vim.log.levels.INFO)
+
+  local local_rc = path .. "/.nvim.lua"
+  if vim.loop.fs_stat(local_rc) then
+    vim.cmd("luafile " .. local_rc)
+    vim.notify("Loaded local config: " .. local_rc, vim.log.levels.INFO)
+  end
+
+  oil_toggle()
 end
 
 -- WARN: only use <leader> key when you are in normal mode else there will be

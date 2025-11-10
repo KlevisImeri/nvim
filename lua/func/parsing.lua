@@ -14,11 +14,11 @@ local function get_terminal_prompt_line()
     vim.notify("Could not get current buffer", vim.log.levels.WARN)
     return ""
   end
- 
+
   local cursor_pos = vim.api.nvim_win_get_cursor(0)
   local row = cursor_pos[1]
   local prompt_line = vim.api.nvim_buf_get_lines(bufnr, row - 1, row, false)[1] or ""
-  
+
   return prompt_line
 end
 
@@ -27,15 +27,17 @@ vim.api.nvim_create_user_command("ParseErrors", function(opts)
   if not vim.api.nvim_buf_is_valid(bufnr) then
     return
   end
-  vim.cmd('cclose')
 
   local output = vim.api.nvim_buf_get_lines(bufnr, 0, -1, false)
+  vim.cmd('cclose')
   vim.fn.setqflist({}, 'r', { lines = output })
-
   if #vim.fn.getqflist() > 0 then
-    vim.api.nvim_buf_delete(bufnr, { force = true }) 
     vim.cmd('copen')
+    vim.cmd('only')
     vim.cmd('cfirst') 
+    -- make the copen buffer smaller:
+    vim.cmd('only')
+    vim.cmd('copen')
   end
 end, {
   nargs = 0,

@@ -3,7 +3,6 @@ return {
   event = { "InsertEnter", "CmdlineEnter" },
   dependencies = {
     "hrsh7th/cmp-buffer",
-    "amarz45/nvim-cmp-buffer-lines",
     "hrsh7th/cmp-path",
     "ray-x/cmp-treesitter",
     "hrsh7th/cmp-nvim-lua",
@@ -60,7 +59,6 @@ return {
         { name = "treesitter",    group_index = 1 },
         { name = "nvim_lua",      group_index = 2 },
         { name = "path",          group_index = 3 },
-        { name = "buffer-lines",  group_index = 4 },
         { name = "buffer",        group_index = 4 },
         { name = "latex_symbols", group_index = 5 },
         { name = "spell",         group_index = 6 },
@@ -74,7 +72,6 @@ return {
 
           local source_names = {
             buffer = "[Buffer]",
-            ["buffer-lines"] = "[Lines]",
             path = "[Path]",
             treesitter = "[Treesitter]",
             nvim_lua = "[Lua]",
