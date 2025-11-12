@@ -24,7 +24,7 @@ return {
       conceallevel = 3,
       concealcursor = "nvic",
     },
-    delete_to_trash = false,
+    delete_to_trash = true,
     skip_confirm_for_simple_edits = true,
     prompt_save_on_select_new_entry = true,
     cleanup_delay_ms = false,
