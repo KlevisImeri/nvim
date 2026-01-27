@@ -31,3 +31,4 @@ vim.opt.hlsearch = true
 vim.opt.expandtab = true
 vim.opt.exrc = true
 vim.opt.autochdir = false
+vim.opt.colorcolumn = "88"
