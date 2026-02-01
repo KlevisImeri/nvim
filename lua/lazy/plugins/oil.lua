@@ -52,17 +52,24 @@ return {
       ["gs"] = { "actions.change_sort", mode = "n" },
       ["gx"] = "actions.open_external",
       ["g."] = { "actions.toggle_hidden", mode = "n" },
-      ["g\\"] = { "actions.toggle_trash", mode = "n" },
-      -- ["yy"] = {
-      --  "actions.copy_to_system_clipboard",
-      --  mode = "n",
-      --  desc = "Copy path to system clipboard (+ register)",
-      -- },
-      -- ["pp"] = {
-      --  "actions.paste_from_system_clipboard",
-      --  mode = "n",
-      --  desc = "Paste file path from system clipboard (+ register)",
-      -- },
+     ["g\\"] = { "actions.toggle_trash", mode = "n" },
+     ["d"] = {
+      callback = function()
+        if vim.bo.filetype ~= "oil" then return end
+        local oil = require("oil")
+        local entry = oil.get_cursor_entry()
+        if not entry then
+          vim.notify("No file under cursor", vim.log.levels.WARN)
+          return
+        end
+        local current_dir = oil.get_current_dir()
+        local file_path = current_dir .. entry.name
+           vim.notify("drag " .. file_path, vim.log.levels.INFO)
+           vim.cmd("!drag " .. vim.fn.fnameescape(file_path))
+      end,
+      mode = "n",
+      desc = "Drag file under cursor",
+      },
     },
     use_default_keymaps = true,
     view_options = {
