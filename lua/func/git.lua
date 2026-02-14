@@ -1,8 +1,29 @@
-vim.keymap.set('n', '<leader>gdh', '<cmd>Gitsigns diffthis<CR>', { desc = "[G]it [D]iff [H]ere" })
-
-vim.keymap.set('n', '<leader>gdm', function()
-  require('gitsigns').diffthis('main')
-end, { desc = "[G]it [D]iff [M]ain" })
+vim.api.nvim_create_user_command("GitDiff", function(opts)
+  local branch = opts.args
+  if branch == "" then
+    require('gitsigns').diffthis()
+  else
+    require('gitsigns').diffthis(branch)
+  end
+end, {
+  nargs = '?',
+  complete = function(ArgLead, CmdLine, CursorPos)
+    local handle = io.popen("git branch --format='%(refname:short)'")
+    local result = handle:read("*a")
+    handle:close()
+    local branches = {}
+    for s in result:gmatch("[^\r\n]+") do
+      table.insert(branches, s)
+    end
+    return vim.tbl_filter(function(s)
+      return string.sub(s, 1, string.len(ArgLead)) == ArgLead
+    end, branches)
+  end
+})
+vim.keymap.set('n', '<leader>gdh', '<cmd>GitDiff<CR>', { desc = "[G]it [D]iff [H]ere" })
+vim.keymap.set('n', '<leader>gdm', '<cmd>GitDiff main<CR>', { desc = "[G]it [D]iff [M]ain" })
+vim.keymap.set('n', '<leader>gda', '<cmd>GitDiff master<CR>', { desc = "[G]it [D]iff m[a]ster" })
+vim.keymap.set('n', '<leader>gD', ':GitDiff ', { desc = "[G]it [D]iff (Command)" })
 
 vim.api.nvim_create_user_command("GitPush", function(opts)
   local commit_message = opts.args
