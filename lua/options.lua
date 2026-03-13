@@ -32,3 +32,5 @@ vim.opt.expandtab = true
 vim.opt.exrc = true
 vim.opt.autochdir = false
 vim.opt.colorcolumn = "88"
+vim.opt.grepprg = "rg --vimgrep --smart-case"
+vim.opt.grepformat = "%f:%l:%c:%m,%f:%l:%m"
