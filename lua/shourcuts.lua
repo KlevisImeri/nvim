@@ -54,8 +54,6 @@ local function cd_to_terminal_path()
     vim.cmd("luafile " .. local_rc)
     vim.notify("Loaded local config: " .. local_rc, vim.log.levels.INFO)
   end
-
-  oil_toggle()
 end
 
 local function clear_term()
