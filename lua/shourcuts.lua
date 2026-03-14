@@ -8,6 +8,18 @@ local function toggle_macro_recording()
   end
 end
 
+local function select_all_and_return()
+  local pos = vim.fn.getpos(".")
+  vim.cmd("normal! ggVG")
+  vim.api.nvim_create_autocmd("ModeChanged", {
+    once = true,
+    pattern = "V:*",
+    callback = function()
+      vim.fn.setpos(".", pos)
+    end,
+  })
+end
+
 local function oil_toggle()
   if vim.bo.filetype == "oil" then
     require("oil").close()
@@ -59,7 +71,7 @@ end
 --       the next command
 vim.api.nvim_set_keymap("n", "<C-CR>", ":term ./r.sh<CR>", { noremap = true })
 vim.keymap.set('n', '<leader>e', ":ParseErrors<CR>", { noremap = true, silent = true })
-vim.api.nvim_set_keymap("n", "<C-a>", "ggVG", { noremap = true })
+vim.keymap.set("n", "<C-a>", select_all_and_return, { noremap = true, silent = true })
 vim.api.nvim_set_keymap("v", "<C-c>", '"+y', { noremap = true })
 vim.api.nvim_set_keymap("i", "<C-v>", '<Esc>"+p', { noremap = true })
 vim.api.nvim_set_keymap("n", "<C-v>", '"+p', { noremap = true })
@@ -69,7 +81,6 @@ vim.api.nvim_set_keymap("n", "<C-s>", ":wa<CR>", { noremap = true, silent = true
 vim.api.nvim_set_keymap("i", "<C-s>", "<Esc>:wa<CR>", { noremap = true, silent = true })
 vim.api.nvim_set_keymap("v", "<C-s>", "<Esc>:wa<CR>", { noremap = true, silent = true })
 vim.api.nvim_set_keymap("i", "<C-BS>", "<C-W>", { noremap = true, silent = true })
-vim.api.nvim_set_keymap("n", "<C-A>", "ggVG", { noremap = true, silent = true })
 vim.api.nvim_set_keymap("n", "<C-Z>", "u", { noremap = true, silent = true })
 vim.api.nvim_set_keymap("i", "<C-Z>", "u", { noremap = true, silent = true })
 vim.api.nvim_set_keymap('n', '<C-x>', '"+yy"_dd', { noremap = true, silent = true })

@@ -50,15 +50,28 @@ vim.api.nvim_create_user_command("Fd", function(opts)
     return
   end
 
-  vim.ui.select(results, {
-    prompt = "Select:",
-  }, function(choice)
-    if choice then
-      vim.cmd("edit " .. vim.fn.fnameescape(choice))
-    end
-  end)
+  local items = {}
+  for _, path in ipairs(results) do
+    table.insert(items, { filename = path, lnum = 1, col = 1, text = path })
+  end
+
+  vim.fn.setqflist(items)
+  vim.cmd("copen")
 end, {
   nargs = "*",
-  desc = "Run fd and select result",
+  desc = "Run fd and put results in quickfix",
+})
+
+
+vim.api.nvim_create_autocmd("FileType", {
+  pattern = "qf",
+  callback = function()
+    vim.keymap.set("n", "dd", function()
+      local qf = vim.fn.getqflist()
+      local line = vim.fn.line(".")
+      table.remove(qf, line)
+      vim.fn.setqflist(qf, "r")
+    end, { buffer = true, desc = "Delete quickfix entry" })
+  end,
 })
 
