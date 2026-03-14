@@ -51,6 +51,23 @@ return {
       ["~"] = { "actions.cd", opts = { scope = "tab" }, mode = "n" },
       ["gs"] = { "actions.change_sort", mode = "n" },
       ["gx"] = "actions.open_external",
+      ["F"] = {
+       callback = function()
+         if vim.bo.filetype ~= "oil" then return end
+         local oil = require("oil")
+         local entry = oil.get_cursor_entry()
+         local current_dir = oil.get_current_dir()
+         local path
+         if entry then
+           path = current_dir .. entry.name
+         else
+           path = current_dir
+         end
+         vim.fn.jobstart({ "firefox", path }, { detach = true })
+       end,
+       mode = "n",
+       desc = "Open with Firefox",
+       },
       ["g."] = { "actions.toggle_hidden", mode = "n" },
      ["g\\"] = { "actions.toggle_trash", mode = "n" },
      ["d"] = {
@@ -65,7 +82,7 @@ return {
         local current_dir = oil.get_current_dir()
         local file_path = current_dir .. entry.name
            vim.notify("drag " .. file_path, vim.log.levels.INFO)
-           vim.cmd("!drag " .. vim.fn.fnameescape(file_path))
+           vim.fn.jobstart({ "drag", file_path }, { detach = true })
       end,
       mode = "n",
       desc = "Drag file under cursor",

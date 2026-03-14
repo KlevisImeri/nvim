@@ -55,8 +55,16 @@ vim.api.nvim_create_user_command("Fd", function(opts)
     table.insert(items, { filename = path, lnum = 1, col = 1, text = path })
   end
 
+  local bufnr = vim.api.nvim_get_current_buf()
+  local buftype = vim.bo[bufnr].buftype
+
   vim.fn.setqflist(items)
   vim.cmd("copen")
+
+  if buftype ~= "quickfix" then
+    vim.cmd("wincmd p")
+    vim.cmd("q")
+  end
 end, {
   nargs = "*",
   desc = "Run fd and put results in quickfix",
