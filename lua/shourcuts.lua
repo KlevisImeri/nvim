@@ -123,7 +123,6 @@ vim.keymap.set("n", "<C-S-right>", "vw", { desc = "Select word right", silent = 
 vim.keymap.set("n", "<C-Up>", "<C-y>", { desc = "Scroll up", silent = true })
 vim.keymap.set("n", "<C-S-Up>", "<C-v>k", { desc = "Select block up", silent = true })
 vim.keymap.set("n", "<C-S-Down>", "<C-v>j", { desc = "Select block down", silent = true })
-vim.keymap.set("n", "gf", "<C-w>f", { desc = "Open file in split", silent = true })
 vim.keymap.set("n", "<leader>m", toggle_macro_recording, { desc = "Toggle macro recording", silent = true, expr = true })
 vim.keymap.set("v", "<leader>m", ":'<,'>norm @q<CR>", { desc = "Apply macro to selection", silent = true })
 vim.keymap.set("n", "<C-w>>", "20<C-w>>", { desc = "Widen window", silent = true })
