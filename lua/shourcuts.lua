@@ -128,8 +128,6 @@ vim.keymap.set("n", "<C-w>>", "20<C-w>>", { desc = "Widen window", silent = true
 vim.keymap.set("n", "<C-w><", "20<C-w><", { desc = "Narrow window", silent = true })
 vim.keymap.set("n", "cd", cd_to_terminal_path, { desc = "CD to terminal path" })
 vim.keymap.set("n", "<leader>cl", clear_term, { desc = "[C]lears the [t]erminal" })
-vim.keymap.set("n", "<leader>sf", ":Fd ", { desc = "Fd file finder", silent = false })
-vim.keymap.set("n", "<leader>sg", ":grep ", { desc = "Grep", silent = false })
-vim.keymap.set("n", "<leader><leader>", ":b ", { desc = "Switch buffer", silent = false })
+
 vim.keymap.set("n", "<leader>n", ":cnext<CR>", { desc = "Next in quickfix" })
 vim.keymap.set("n", "<leader>N", ":cprevious<CR>", { desc = "Previous in quickfix" })
