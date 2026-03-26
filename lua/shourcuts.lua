@@ -69,7 +69,7 @@ end
 --       a lag in the insert mode when you press space, because its wating for
 --       the next command
 
-vim.keymap.set("n", "<C-CR>", ":term ./r.sh<CR>", { desc = "Run r.sh in terminal" })
+vim.keymap.set("n", "<C-CR>", ":Recompile<CR>", { desc = "Recompile" })
 vim.keymap.set("n", "<leader>e", ":ParseErrors<CR>", { desc = "Parse errors", silent = true })
 vim.keymap.set("n", "<C-a>", select_all_and_return, { desc = "Select all", silent = true })
 vim.keymap.set("v", "<C-c>", '"+y', { desc = "Copy to clipboard" })
