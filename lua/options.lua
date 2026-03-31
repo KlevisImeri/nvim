@@ -15,6 +15,7 @@ vim.g.loaded_node_provider = 0
 vim.opt.wrap = false
 vim.opt.breakindent = true
 vim.opt.undofile = true
+vim.opt.swapfile = false
 vim.opt.ignorecase = true
 vim.opt.smartcase = true
 vim.opt.signcolumn = "yes"
