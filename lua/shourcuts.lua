@@ -20,23 +20,6 @@ local function select_all_and_return()
   })
 end
 
-local function oil_toggle()
-  if vim.bo.filetype == "oil" then
-    require("oil").close()
-  elseif vim.bo.buftype == "terminal" then
-    local prompt_line = parsing.get_terminal_prompt_line()
-    local path = parsing.extract_path_from_prompt(prompt_line)
-    vim.notify("Path: " .. (path or "nil"), vim.log.levels.INFO)
-    if path then
-      require("oil").open(path)
-    else
-      require("oil").open()
-    end
-  else
-    require("oil").open()
-  end
-end
-
 local function cd_to_terminal_path()
   local prompt_line = parsing.get_terminal_prompt_line()
   local path = parsing.extract_path_from_prompt(prompt_line)
@@ -128,6 +111,5 @@ vim.keymap.set("n", "<C-w>>", "20<C-w>>", { desc = "Widen window", silent = true
 vim.keymap.set("n", "<C-w><", "20<C-w><", { desc = "Narrow window", silent = true })
 vim.keymap.set("n", "cd", cd_to_terminal_path, { desc = "CD to terminal path" })
 vim.keymap.set("n", "<leader>cl", clear_term, { desc = "[C]lears the [t]erminal" })
-
 vim.keymap.set("n", "<leader>n", ":cnext<CR>", { desc = "Next in quickfix" })
 vim.keymap.set("n", "<leader>N", ":cprevious<CR>", { desc = "Previous in quickfix" })

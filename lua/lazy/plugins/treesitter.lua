@@ -14,7 +14,7 @@ return {
     auto_install = true,
     highlight = { enable = true },
     indent = { enable = true },
-    compilers = { vim.fn.getenv('CC'), "cc", "gcc", "clang", "cl", "zig" },
+    compilers = { vim.fn.getenv('CC'), "cc", "gcc", "clang", "cl", "zig", "cargo"},
   },
   config = function(_, opts)
     require("nvim-treesitter.configs").setup(opts)

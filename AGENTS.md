@@ -20,18 +20,20 @@ This is a Neovim Lua configuration using lazy.nvim plugin manager.
 │       └── plugins/           # Individual plugin configs
 │           ├── autopairs.lua
 │           ├── comment.lua
+│           ├── compiler-mode.lua
 │           ├── easyalign.lua
 │           ├── gitsigns.lua
 │           ├── githubtheme.lua
 │           ├── img-clip.lua
 │           ├── lualine.lua
 │           ├── multicursor.lua
-│           ├── which-key.lua
-│           ├── treesitter.lua
-│           ├── todo-comments.lua
+│           ├── oil.lua
+│           ├── opencode.lua
 │           ├── splitjoin.lua
-│           ├── telescope.luaOld    # disabled
-│           └── oil.luaOld           # disabled
+│           ├── telescope.lua
+│           ├── todo-comments.lua
+│           ├── treesitter.lua
+│           └── which-key.lua
 ```
 
 ## Quick Reference
@@ -45,5 +47,4 @@ This is a Neovim Lua configuration using lazy.nvim plugin manager.
 
 ## Notes
 
-- Disabled plugins have `.luaOld` extension
 - Plugin configs follow lazy.nvim spec format (table return with `name`, `event`, `dependencies`, `config`)
