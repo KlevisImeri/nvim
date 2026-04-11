@@ -16,10 +16,4 @@ return {
     indent = { enable = true },
     compilers = { vim.fn.getenv('CC'), "cc", "gcc", "clang", "cl", "zig", "cargo"},
   },
-  config = function(_, opts)
-    require("nvim-treesitter.configs").setup(opts)
-    -- Incremental selection: Included, see `:help nvim-treesitter-incremental-selection-mod`
-    -- Show your current context: https://github.com/nvim-treesitter/nvim-treesitter-context
-    -- Treesitter + textobjects: https://github.com/nvim-treesitter/nvim-treesitter-textobjects
-  end,
 }
