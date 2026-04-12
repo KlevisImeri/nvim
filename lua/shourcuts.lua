@@ -20,23 +20,11 @@ local function select_all_and_return()
   })
 end
 
-local function cd_to_terminal_path()
-  local prompt_line = parsing.get_terminal_prompt_line()
-  local path = parsing.extract_path_from_prompt(prompt_line)
-
-  if not path then
-    vim.notify("Could not extract path from prompt", vim.log.levels.WARN)
-    return
-  end
-
-  vim.cmd("cd " .. path)
-  require("oil").open(path)
-  vim.notify("Changed directory to: " .. path, vim.log.levels.INFO)
-
-  local local_rc = path .. "/.nvim.lua"
-  if vim.loop.fs_stat(local_rc) then
-    vim.cmd("luafile " .. local_rc)
-    vim.notify("Loaded local config: " .. local_rc, vim.log.levels.INFO)
+local function open_oil()
+  if vim.bo.buftype == "terminal" then
+    require("oil").open(vim.fn.getcwd())
+  else
+    require("oil").open()
   end
 end
 
@@ -59,7 +47,7 @@ vim.keymap.set("v", "<C-c>", '"+y', { desc = "Copy to clipboard" })
 vim.keymap.set("i", "<C-v>", '<Esc>"+p', { desc = "Paste from clipboard" })
 vim.keymap.set("n", "<C-v>", '"+p', { desc = "Paste from clipboard" })
 vim.keymap.set("v", "<C-v>", '"_d"+P', { desc = "Paste over selection", silent = true })
-vim.keymap.set("n", "-", ":Oil<CR>", { desc = "Toggle Oil File Explorer" })
+vim.keymap.set("n", "-", open_oil, { desc = "Open oil in current directory" })
 vim.keymap.set("n", "<C-s>", ":wa<CR>", { desc = "Save all", silent = true })
 vim.keymap.set("i", "<C-s>", "<Esc>:wa<CR>", { desc = "Save all", silent = true })
 vim.keymap.set("v", "<C-s>", "<Esc>:wa<CR>", { desc = "Save all", silent = true })
@@ -109,7 +97,6 @@ vim.keymap.set("n", "<leader>m", toggle_macro_recording, { desc = "Toggle macro 
 vim.keymap.set("v", "<leader>m", ":'<,'>norm @q<CR>", { desc = "Apply macro to selection", silent = true })
 vim.keymap.set("n", "<C-w>>", "20<C-w>>", { desc = "Widen window", silent = true })
 vim.keymap.set("n", "<C-w><", "20<C-w><", { desc = "Narrow window", silent = true })
-vim.keymap.set("n", "cd", cd_to_terminal_path, { desc = "CD to terminal path" })
 vim.keymap.set("n", "<leader>cl", clear_term, { desc = "[C]lears the [t]erminal" })
 vim.keymap.set("n", "<leader>n", ":cnext<CR>", { desc = "Next in quickfix" })
 vim.keymap.set("n", "<leader>N", ":cprevious<CR>", { desc = "Previous in quickfix" })
