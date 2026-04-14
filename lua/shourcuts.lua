@@ -36,6 +36,18 @@ local function clear_term()
   vim.cmd("set scrollback=" .. org_scrollback)
 end
 
+local function open_selected_markdown()
+  vim.cmd('normal! "zy')
+  local selected_text = vim.fn.getreg('z')
+  local tmpfile = '/tmp/nvim_math_preview.md'
+  local f = io.open(tmpfile, 'w')
+  if f then
+    f:write(selected_text);
+    f:close()
+    vim.fn.jobstart('firefox ' .. tmpfile)
+  end
+end
+
 -- WARN: only use <leader> key when you are in normal mode else there will be
 --       a lag in the insert mode when you press space, because its wating for
 --       the next command
@@ -100,3 +112,4 @@ vim.keymap.set("n", "<C-w><", "20<C-w><", { desc = "Narrow window", silent = tru
 vim.keymap.set("n", "<leader>cl", clear_term, { desc = "[C]lears the [t]erminal" })
 vim.keymap.set("n", "<leader>n", ":cnext<CR>", { desc = "Next in quickfix" })
 vim.keymap.set("n", "<leader>N", ":cprevious<CR>", { desc = "Previous in quickfix" })
+vim.keymap.set("x", "<leader>fp", open_selected_markdown, { desc = "review selected Latex/Math in Firefox" })
