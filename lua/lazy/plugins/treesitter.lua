@@ -9,11 +9,11 @@ return {
       "lua",
       "markdown",
       "vim",
-      "vimdoc"
+      "vimdoc",
+      "go",
+      "rust",
+      "typescript",
     },
     auto_install = true,
-    highlight = { enable = true },
-    indent = { enable = true },
-    compilers = { vim.fn.getenv('CC'), "cc", "gcc", "clang", "cl", "zig", "cargo"},
   },
 }

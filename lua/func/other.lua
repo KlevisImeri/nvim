@@ -72,6 +72,13 @@ end, {
 
 
 vim.api.nvim_create_autocmd("FileType", {
+  desc = "Enable treesitter highlighting",
+  callback = function()
+    pcall(vim.treesitter.start)
+  end,
+})
+
+vim.api.nvim_create_autocmd("FileType", {
   pattern = "qf",
   callback = function()
     vim.keymap.set("n", "dd", function()
