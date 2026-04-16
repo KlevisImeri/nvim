@@ -70,14 +70,6 @@ end, {
   desc = "Run fd and put results in quickfix",
 })
 
-
-vim.api.nvim_create_autocmd("FileType", {
-  desc = "Enable treesitter highlighting",
-  callback = function()
-    pcall(vim.treesitter.start)
-  end,
-})
-
 vim.api.nvim_create_autocmd("FileType", {
   pattern = "qf",
   callback = function()
