@@ -6,8 +6,8 @@ return {
     require("nvim-treesitter").setup {}
 
     require("nvim-treesitter").install {
-      "bash", "c", "html", "lua", "markdown",
-      "vim", "vimdoc", "go", "rust", "typescript", "tsx",
+      "bash", "c", "cpp", "c_sharp", "html", "java", "json", "kotlin", "lua", "markdown",
+      "vim", "vimdoc", "go", "rust", "tsx", "typescript", "vue",
     }
 
     vim.api.nvim_create_autocmd("FileType", {
