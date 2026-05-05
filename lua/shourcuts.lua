@@ -28,13 +28,6 @@ local function open_oil()
   end
 end
 
-local function clear_term()
-  vim.cmd('startinsert')
-  vim.api.nvim_input("clear" .. "<CR>")
-  local org_scrollback = vim.opt_local.scrollback._value
-  vim.cmd("set scrollback=1")
-  vim.cmd("set scrollback=" .. org_scrollback)
-end
 
 local function open_selected_markdown()
   vim.cmd('normal! "zy')
@@ -48,7 +41,16 @@ local function open_selected_markdown()
   end
 end
 
--- WARN: only use <leader> key when you are in normal mode else there will be
+local function copy_range_reference()
+  vim.cmd('normal! "zy')
+  local start = vim.fn.getpos("'<")
+  local end_ = vim.fn.getpos("'>")
+  local filepath = vim.fn.expand('%:p')
+  local range_str = string.format("%s:%d:%d:%d:%d", filepath, start[2], start[3], end_[2], end_[3])
+  vim.fn.setreg('+', range_str)
+  vim.notify("Copied: " .. range_str, vim.log.levels.INFO)
+end
+
 --       a lag in the insert mode when you press space, because its wating for
 --       the next command
 
@@ -75,6 +77,8 @@ vim.keymap.set("v", "<A-Up>", ":m '<-2<CR>gv=gv", { desc = "Move selection up", 
 vim.keymap.set("v", "<A-Down>", ":m '>+1<CR>gv=gv", { desc = "Move selection down", silent = true })
 vim.keymap.set("n", "<S-Tab>", "<<", { desc = "Decrease indent", silent = true })
 vim.keymap.set("v", "<S-Tab>", "<gv", { desc = "Decrease indent", silent = true })
+vim.keymap.set("v", "<leader>S", ":s/\\s\\+$<CR>", { desc = "Strip trailing whitespace" })
+vim.keymap.set("n", "<leader>S", ":%s/\\s\\+$<CR>", { desc = "Strip trailing whitespace" })
 vim.keymap.set("v", "<BS>", '"_d', { desc = "Delete (no yank)", silent = true })
 vim.keymap.set("v", "<Tab>", ">gv", { desc = "Increase indent", silent = true })
 vim.keymap.set("t", "<Esc>", "<Esc><C-\\><C-n>", { desc = "Exit terminal mode", silent = true })
@@ -109,7 +113,7 @@ vim.keymap.set("n", "<leader>m", toggle_macro_recording, { desc = "Toggle macro 
 vim.keymap.set("v", "<leader>m", ":'<,'>norm @q<CR>", { desc = "Apply macro to selection", silent = true })
 vim.keymap.set("n", "<C-w>>", "20<C-w>>", { desc = "Widen window", silent = true })
 vim.keymap.set("n", "<C-w><", "20<C-w><", { desc = "Narrow window", silent = true })
-vim.keymap.set("n", "<leader>cl", clear_term, { desc = "[C]lears the [t]erminal" })
 vim.keymap.set("n", "<leader>n", ":cnext<CR>", { desc = "Next in quickfix" })
 vim.keymap.set("n", "<leader>N", ":cprevious<CR>", { desc = "Previous in quickfix" })
 vim.keymap.set("x", "<leader>fp", open_selected_markdown, { desc = "review selected Latex/Math in Firefox" })
+vim.keymap.set("v", "<leader>cp", copy_range_reference, { desc = "Copy range reference", silent = true })

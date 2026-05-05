@@ -54,6 +54,7 @@ return {
     vim.keymap.set("n", "<leader><leader>", builtin.buffers, { desc = "[ ] Find existing buffers" })
     vim.keymap.set("n", "<leader>th", builtin.colorscheme, { desc = "[Th]emes" })
     vim.keymap.set("n", "<leader>ss", builtin.spell_suggest, { desc = "[S]pell [S]uggest" })
+    vim.keymap.set("n", "<leader>ce", "<cmd>Telescope compile-mode<cr>")
 
     vim.keymap.set("n", "<leader>scc", builtin.git_commits, { desc = "[S]earch Git [C]ommits" })
     vim.keymap.set("n", "<leader>scb", builtin.git_bcommits, { desc = "[S]earch [B]uffer [C]ommits" })
