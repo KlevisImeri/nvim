@@ -51,9 +51,59 @@ local function copy_range_reference()
   vim.notify("Copied: " .. range_str, vim.log.levels.INFO)
 end
 
---       a lag in the insert mode when you press space, because its wating for
+local function gf_jump_to_file()
+  local line = vim.fn.getline('.')
+  local col = vim.fn.col('.')
+  local s = col
+  while s > 1 and not line:sub(s - 1, s - 1):match('%s') do s = s - 1 end
+  local e = col
+  while e <= #line and not line:sub(e, e):match('%s') do e = e + 1 end
+  local pattern = line:sub(s, e - 1)
+  print(pattern)
+  local file, line, col = pattern:match('^([^:]+):(%d+):(%d+)$')
+  if not (file and line) then
+   file, line = pattern:match('^([^:]+):(%d+)$')
+  end
+  if file and line then
+    file = vim.fn.expand(file)
+    line, col = tonumber(line), tonumber(col)
+    if not line or line < 1 then
+      print("Line out of range, clamped to 1")
+      line = 1
+    end
+    if not col or col < 1 then
+      print("Col out of range, clamped to 1")
+      col = 1
+    end
+    if vim.fn.filereadable(file) == 0 then
+       print("File not found: " .. file)
+       return
+    end
+    line, col = line, col - 1
+    local bufnr = vim.fn.bufadd(file)
+    vim.fn.bufload(bufnr)
+    local total_lines = vim.api.nvim_buf_line_count(bufnr)
+    if line > total_lines then
+      print(string.format("Line %d out of range (file has %d lines): %s", line, total_lines, file))
+      line = total_lines
+    end
+    local line_len = #vim.api.nvim_buf_get_lines(bufnr, line - 1, line, true)[1]
+    if col > line_len then
+       print(string.format("Col %d out of range (line %d has %d cols): %s:%d:%d", col + 1, line, line_len, file, line, col + 1))
+       col = line_len
+    end
+    vim.cmd('edit ' .. file)
+    vim.api.nvim_win_set_cursor(0, { line, col })
+  else
+    print("Defaulted to normal!")
+    vim.cmd('normal! gf')
+  end
+end
+
+-- WARN: a lag in the insert mode when you press space, because its wating for
 --       the next command
 
+vim.keymap.set("n", "gf", gf_jump_to_file, { desc = "Go to file:line:col" })
 vim.keymap.set("n", "<C-CR>", ":Recompile<CR>", { desc = "Recompile" })
 vim.keymap.set("n", "<leader>e", ":ParseErrors<CR>", { desc = "Parse errors", silent = true })
 vim.keymap.set("n", "<C-a>", select_all_and_return, { desc = "Select all", silent = true })
