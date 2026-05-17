@@ -51,6 +51,27 @@ local function copy_range_reference()
   vim.notify("Copied: " .. range_str, vim.log.levels.INFO)
 end
 
+local function copy_clean_to_clipboard()
+  vim.cmd('normal! "zy')
+  local lines = vim.split(vim.fn.getreg("z"), "\n")
+
+  local min_indent = math.huge
+  for _, line in ipairs(lines) do
+    if line:match("%S") then
+      min_indent = math.min(min_indent, #line:match("^%s*"))
+    end
+  end
+  if min_indent == math.huge then min_indent = 0 end
+
+  local cleaned = vim.tbl_map(function(line)
+    line = line:gsub("%s+$", "")
+    return min_indent > 0 and #line >= min_indent and line:sub(min_indent + 1) or line
+  end, lines)
+
+  vim.fn.setreg("+", cleaned, "l")
+  vim.hl.on_yank({ timeout = 200 })
+end
+
 local function gf_jump_to_file()
   local line = vim.fn.getline('.')
   local col = vim.fn.col('.')
@@ -107,7 +128,7 @@ vim.keymap.set("n", "gf", gf_jump_to_file, { desc = "Go to file:line:col" })
 vim.keymap.set("n", "<C-CR>", ":Recompile<CR>", { desc = "Recompile" })
 vim.keymap.set("n", "<leader>e", ":ParseErrors<CR>", { desc = "Parse errors", silent = true })
 vim.keymap.set("n", "<C-a>", select_all_and_return, { desc = "Select all", silent = true })
-vim.keymap.set("v", "<C-c>", '"+y', { desc = "Copy to clipboard" })
+vim.keymap.set("v", "<C-c>", copy_clean_to_clipboard, { desc = "Copy cleaned to clipboard" })
 vim.keymap.set("i", "<C-v>", '<Esc>"+p', { desc = "Paste from clipboard" })
 vim.keymap.set("n", "<C-v>", '"+p', { desc = "Paste from clipboard" })
 vim.keymap.set("v", "<C-v>", '"_d"+P', { desc = "Paste over selection", silent = true })
