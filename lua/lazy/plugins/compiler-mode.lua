@@ -1,6 +1,6 @@
 return {
-  "ej-shafran/compile-mode.nvim",
-  branch = "latest",
+  dir = "/home/klevis/Projects/compile-mode.nvim",
+  -- branch = "latest",
   dependencies = {
     "nvim-lua/plenary.nvim",
     { "m00qek/baleia.nvim" },
@@ -9,13 +9,15 @@ return {
     ---@type CompileModeOpts
     vim.g.compile_mode = function()
       return {
-        ansi_color_for_compilation = "render",
-        baleia_setup = {
-          colors = setmetatable({}, {
-            __index = function(_, i)
-              return vim.g["terminal_color_" .. i]
-            end,
-          }),
+        ansi_color = {
+          kind = "render",
+          baleia_setup = {
+            colors = setmetatable({}, {
+              __index = function(_, i)
+                return vim.g["terminal_color_" .. i]
+              end,
+            }),
+          },
         },
         bang_expansion = true,
         environment = {
