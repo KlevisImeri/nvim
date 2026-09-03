@@ -152,6 +152,7 @@ vim.keymap.set("v", "<leader>S", ":s/\\s\\+$<CR>", { desc = "Strip trailing whit
 vim.keymap.set("n", "<leader>S", ":%s/\\s\\+$<CR>", { desc = "Strip trailing whitespace" })
 vim.keymap.set("v", "<BS>", '"_d', { desc = "Delete (no yank)", silent = true })
 vim.keymap.set("v", "<Tab>", ">gv", { desc = "Increase indent", silent = true })
+vim.keymap.set("n", "<leader>tt", "<cmd>vsplit | terminal<CR>", { desc = "Open terminal in vertical split", silent = true })
 vim.keymap.set("t", "<Esc>", "<Esc><C-\\><C-n>", { desc = "Exit terminal mode", silent = true })
 vim.keymap.set("n", "<Esc>", "<cmd>nohlsearch<CR>", { desc = "Clear search highlight" })
 vim.keymap.set("n", "<S-Home>", "v0", { desc = "Select to line start", silent = true })
