@@ -11,7 +11,7 @@ return {
       return {
         ansi_color = {
           kind = "render",
-          baleia_setup = {
+          baleia_options = {
             colors = setmetatable({}, {
               __index = function(_, i)
                 return vim.g["terminal_color_" .. i]
