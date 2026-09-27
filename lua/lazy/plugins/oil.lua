@@ -68,6 +68,23 @@ return {
        mode = "n",
        desc = "Open with Firefox",
        },
+      ["E"] = {
+       callback = function()
+         if vim.bo.filetype ~= "oil" then return end
+         local oil = require("oil")
+         local entry = oil.get_cursor_entry()
+         local current_dir = oil.get_current_dir()
+         local path
+         if entry then
+           path = current_dir .. entry.name
+         else
+           path = current_dir
+         end
+         vim.fn.jobstart({ "evince", path }, { detach = true })
+       end,
+       mode = "n",
+       desc = "Open with Evince",
+       },
       ["g."] = { "actions.toggle_hidden", mode = "n" },
      ["g\\"] = { "actions.toggle_trash", mode = "n" },
      ["d"] = {

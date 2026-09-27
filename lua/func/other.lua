@@ -41,6 +41,28 @@ end, {
 })
 
 
+vim.api.nvim_create_user_command("Evince", function()
+  local filename = vim.fn.expand('%')
+
+  if filename == '' then
+    vim.notify("No file is currently open", vim.log.levels.WARN)
+    return
+  end
+
+  vim.fn.jobstart({ 'evince', filename }, {
+    detach = true,
+    on_exit = function(_, exit_code)
+      if exit_code ~= 0 then
+        vim.notify("Failed to open Evince", vim.log.levels.ERROR)
+      end
+    end
+  })
+end, {
+  nargs = 0,
+  desc = "Open current file in Evince"
+})
+
+
 vim.api.nvim_create_user_command("Fd", function(opts)
   local args = opts.args or ""
   local results = vim.fn.systemlist("fd " .. args)
